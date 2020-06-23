@@ -13,6 +13,7 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->app->make('Bageur\Auth\UserController');
         $this->app->make('Bageur\Auth\AuthController');
         $this->app->make('Bageur\Auth\MenuController');
        

@@ -6,10 +6,12 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Bageur\Auth\Processors\AvatarProcessor;
 
 class user extends Authenticatable implements JWTSubject
 {
     protected $table   = 'bgr_user';
+    protected $appends = ['avatar'];
     use Notifiable;
 
     /**
@@ -52,6 +54,44 @@ class user extends Authenticatable implements JWTSubject
     public function getJWTCustomClaims()
     {
         return [];
+    }
+    public function getAvatarAttribute() {
+        return AvatarProcessor::get($this->name);
+    }
+    public function scopeDatatable($query,$request,$page=12)
+    {
+         $search       = ["name"];
+        $searchqry    = '';
+
+        $searchqry = "(";
+        foreach ($search as $key => $value) {
+            if($key == 0){
+                $searchqry .= "lower($value) like '%".strtolower($request->search)."%'";
+            }else{
+                $searchqry .= "OR lower($value) like '%".strtolower($request->search)."%'";
+            }
+        } 
+
+        $searchqry .= ")";
+        if(@$request->sort_by){
+            if(@$request->sort_by != null){
+                $explode = explode('.', $request->sort_by);
+                 $query->orderBy($explode[0],$explode[1]);
+            }else{
+                  $query->orderBy('created_at','desc');
+            }
+
+             $query->whereRaw($searchqry);
+        }else{
+             $query->whereRaw($searchqry);
+        }
+
+        if($request->get == 'all'){
+            return $query->get();
+        }else{
+                return $query->paginate($page);
+        }
+
     }
    
 }
