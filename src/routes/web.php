@@ -9,8 +9,8 @@
 	});
 
 		Route::group(['prefix' => 'bageur/v1'], function () {
-			Route::apiResource('user', 'bageur\auth\UserController');
-			Route::get('global/menu', 'bageur\auth\MenuController@menufull');
+			Route::apiResource('user', 'bageur\auth\UserController')->middleware('jwt.verify');;
+			Route::get('global/menu', 'bageur\auth\MenuController@menufull')->middleware('jwt.verify');;
 		});
 
 	});
