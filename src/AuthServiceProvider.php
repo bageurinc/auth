@@ -28,14 +28,14 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->loadRoutesFrom(__DIR__.'/routes/web.php');
         $this->loadMigrationsFrom(__DIR__.'/migration');
-        $this->publishes([
-            __DIR__.'/config/auth.php' => config_path('auth.php'),
-         ]);       
+        // $this->publishes([
+        //     __DIR__.'/config/auth.php' => config_path('auth.php'),
+        //  ]);       
          $this->publishes([
             __DIR__.'/middleware/JwtMiddleware.php' => app_path('http/Middleware/JwtMiddleware.php'),
-         ]);         
-         $this->publishes([
-            __DIR__.'/middleware/Kernel.php' => app_path('http/Kernel.php'),
-         ]);
+         ],'JwtMiddleware');         
+         // $this->publishes([
+         //    __DIR__.'/middleware/Kernel.php' => app_path('http/Kernel.php'),
+         // ]);
     }
 }
