@@ -35,6 +35,7 @@ class UserController extends Controller
             return response(['status' => false ,'error'    =>  $errors->all()], 200);
         }else{
             $user              		= new user;
+            $user->id_level	        = 1;
             $user->name	            = $request->name;
             $user->email            = $request->email;
             $user->password         = Hash::make($request->password);
