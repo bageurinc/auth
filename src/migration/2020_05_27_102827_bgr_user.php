@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Bageur\Auth\model\user;
 
 class BgrUser extends Migration
 {
@@ -24,6 +25,13 @@ class BgrUser extends Migration
             $table->timestamps();
         }); 
 
+        $user = new user;
+        $user->id               = 1;
+        $user->id_level         = 1;
+        $user->name             = 'Ginanjar Maulana';
+        $user->email            = 'ginda@bageur.com';
+        $user->password         = Hash::make('123123');
+        $user->save();
         
     }
 
@@ -34,6 +42,6 @@ class BgrUser extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('bgr_slider');
+        Schema::dropIfExists('bgr_user');
     }
 }

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Bageur\Auth\model\level_menu;
 
 class CreateLevelMenusTable extends Migration
 {
@@ -22,6 +23,11 @@ class CreateLevelMenusTable extends Migration
             $table->boolean('view')->default(true);
             $table->timestamps();
         });
+
+        $level_menu              = new level_menu;
+        $level_menu->id_level    = 1;
+        $level_menu->id_menu     = 1;
+        $level_menu->save();
     }
 
     /**
@@ -31,6 +37,6 @@ class CreateLevelMenusTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('level_menus');
+        Schema::dropIfExists('bgr_level_menu');
     }
 }

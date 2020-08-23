@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Bageur\Auth\model\menu;
 
 class CreateMenusTable extends Migration
 {
@@ -19,7 +20,7 @@ class CreateMenusTable extends Migration
             $table->string('nama')->nullable();
             $table->string('icon')->nullable();
             $table->string('sub_nama')->nullable();
-            $table->string('judul')->default('Darjeeling');
+            $table->string('judul');
             $table->string('link');
             $table->string('action'); //view , edit , tambah , detail , delete dll
             $table->text('seo_link');
@@ -27,6 +28,16 @@ class CreateMenusTable extends Migration
             $table->boolean('status')->default(true);
             $table->timestamps();
         });
+
+        $menu = new menu;
+        $menu->id                 = 1;
+        $menu->nama               = 'Menu';
+        $menu->judul              = 'Menu';
+        $menu->link               = 'menu';
+        $menu->action             = 'view';
+        $menu->urutan               = 1;
+        $menu->status               = 1;
+        $menu->save();
     }
 
     /**
@@ -36,6 +47,6 @@ class CreateMenusTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('menus');
+        Schema::dropIfExists('bgr_menu');
     }
 }
