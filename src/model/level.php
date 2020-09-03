@@ -10,6 +10,7 @@ class level extends Model
      public function fullmenu()
     {
          return $this->hasMany('Bageur\Auth\model\level_menu','id_level')
+         			 ->whereNull('bgr_menu.sub_id')
          			 ->where('bgr_menu.status',1)
                      ->where('bgr_level_menu.view',true)
          			 ->whereNull('bgr_level_menu.id_submenu')

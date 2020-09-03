@@ -34,6 +34,7 @@ class CreateMenusTable extends Migration
         $menu->nama               = 'Menu';
         $menu->judul              = 'Menu';
         $menu->link               = 'menu';
+        $menu->seo_link           = 'menu';
         $menu->action             = 'view';
         $menu->urutan               = 1;
         $menu->status               = 1;

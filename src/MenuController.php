@@ -19,11 +19,13 @@ class MenuController extends Controller
 
     public function menufull()
     {
-        $json = level::with(['fullmenu'])->find(Auth::user()->id_level);
-        $json['fullmenu']->each(function ($q) {
-            $q->append('avatar');
-         });
-        return $json['fullmenu'];
+        $json = Menu::with('sub_menu')->whereNull('sub_id')->get();
+        return $json;
+        // $json = level::with(['fullmenu'])->find(Auth::user()->id_level);
+        // $json['fullmenu']->each(function ($q) {
+        //     $q->append('avatar');
+        //  });
+        // return $json['fullmenu'];
     }    
 
      public function urutankan(Request $request)
@@ -48,9 +50,12 @@ class MenuController extends Controller
     }
     public function show($id)
     {
-       $menu         = menu::find($id);
-       // $menu->img    = route('getimg',['iconmenu',$menu->icon]);
-       $menu->append('avatar');
+       $menu         = menu::with(['sub'])->find($id);
+       return $menu;
+    }
+    public function showseo($seo_link)
+    {
+       $menu         = menu::with(['sub_menu'])->where('seo_link',$seo_link)->firstOrFail();
        return $menu;
     }
 
@@ -69,10 +74,8 @@ class MenuController extends Controller
                         'nama'    => 'required',
                         'judul'   => 'required',
                         'link'    => 'required',
+                        'files'    => 'nullable|mimes:svg,png|max:50',
                     ];
-        if($request->file('files') != null){
-            $rules['files'] = 'mimes:svg,png|max:50';
-        }   
         $messages = [
         ];
 
@@ -84,12 +87,17 @@ class MenuController extends Controller
             return response(['status' => false ,'error'    =>  $errors->all()], 200);
         }else{
             $menu             = new menu;
+            if(!empty($request->sub_id)){
+                $menu->sub_id       = $request->sub_id;
+                $menu->urutan     = @menu::where('sub_id',$request->sub_id)->latest('urutan')->first()->urutan+1;
+            }else{
+                $menu->urutan     = @menu::latest('urutan')->first()->urutan+1;
+            }
             $menu->nama       = $request->nama;
             $menu->judul      = $request->judul;
             $menu->action     = 'index';
             $menu->link       = $request->link;
             $menu->seo_link   = Str::slug($request->link);
-            $menu->urutan     = @menu::latest('urutan')->first()->urutan+1;
             if($request->file('files') != null){
                 @Storage::disk('local')->delete('public/iconmenu/'.$menu->gambar);
                  $SnameFile = time().'.'.$request->file('files')->getClientOriginalExtension();
@@ -105,7 +113,7 @@ class MenuController extends Controller
        $rules    = [
                         'nama'    => 'required',
                         'judul'   => 'required',
-                        'link'    => 'required',
+                        'files'    => 'nullable|mimes:svg,png|max:50',
                     ];
         if($request->file('files') != null){
             $rules['files'] = 'mimes:svg,png|max:50';
@@ -121,8 +129,15 @@ class MenuController extends Controller
             return response(['status' => false ,'error'    =>  $errors->all()], 200);
         }else{
             $menu             = menu::find($id);
+            if(!empty($request->sub_id)){
+                $menu->sub_id       = $request->sub_id;
+                // $menu->urutan     = @menu::where('sub_id',$request->sub_id)->latest('urutan')->first()->urutan+1;
+            }else{
+                // $menu->urutan     = @menu::whereNull('sub_id')->latest('urutan')->first()->urutan+1;
+            }
             $menu->nama       = $request->nama;
-            $menu->judul       = $request->judul;
+            $menu->judul      = $request->judul;
+            $menu->action     = 'index';
             $menu->link       = $request->link;
             $menu->seo_link   = Str::slug($request->link);
             if($request->file('files') != null){

@@ -8,9 +8,15 @@ use Bageur\Auth\Processors\AvatarProcessor;
 class menu extends Model
 {
     protected $table   = 'bgr_menu';
+    protected $appends  = ['avatar']; 
     public function sub_menu()
     {
          return $this->hasMany('Bageur\Auth\model\menu','sub_id')->orderBy('urutan','asc');
+    }  
+
+    public function sub()
+    {
+         return $this->hasOne('Bageur\Auth\model\menu','id','sub_id');
     }  
 
     public function getAvatarAttribute() {
