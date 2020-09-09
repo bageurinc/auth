@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Bageur\Auth\model\level;
 use Bageur\Auth\model\menu;
-use Auth,Validator;
+use Auth,Validator,DB;
 
 class MenuController extends Controller
 {
@@ -19,7 +19,7 @@ class MenuController extends Controller
 
     public function menufull()
     {
-        $json = Menu::with('sub_menu')->whereNull('sub_id')->get();
+        $json = Menu::with('sub_menu')->orderby('urutan','asc')->whereNull('sub_id')->get();
         return $json;
         // $json = level::with(['fullmenu'])->find(Auth::user()->id_level);
         // $json['fullmenu']->each(function ($q) {
@@ -27,7 +27,20 @@ class MenuController extends Controller
         //  });
         // return $json['fullmenu'];
     }    
-
+    public function notif()
+    {
+        $json = DB::table('notifications')->limit(10)->get();
+        foreach($json as $r){
+            $r->data_json = json_decode($r->data);
+        }
+        return $json;
+    }
+    public function notif_detail($id)
+    {
+        $json = DB::table('notifications')->where('id',$id)->first();
+        $json->data_json = json_decode($json->data);
+        return response()->json($json);
+    }
      public function urutankan(Request $request)
     {
 

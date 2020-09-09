@@ -15,6 +15,8 @@
 			Route::post('menu-up-urutan', 'bageur\auth\MenuController@urutankan')->middleware('jwt.verify');
 			Route::post('menu/ubahstatus', 'bageur\auth\MenuController@ubahstatus')->middleware('jwt.verify');
 			Route::get('global/menu', 'bageur\auth\MenuController@menufull');
+			Route::get('global/notif', 'bageur\auth\MenuController@notif');
+			Route::get('global/notif/{id}', 'bageur\auth\MenuController@notif_detail');
 		});
 
 	});
