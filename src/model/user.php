@@ -6,12 +6,12 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Bageur\Auth\Processors\AvatarProcessor;
+use Bageur\Auth\Processors\Helper;
 
 class user extends Authenticatable implements JWTSubject
 {
     protected $table   = 'bgr_user';
-    protected $appends = ['avatar'];
+    protected $appends = ['avatar','addons_data'];
     use Notifiable;
 
     /**
@@ -55,8 +55,13 @@ class user extends Authenticatable implements JWTSubject
     {
         return [];
     }
+
     public function getAvatarAttribute() {
-        return AvatarProcessor::get($this->name);
+        return Helper::avatar($this->name);
+    }
+
+    public function getAddonsDataAttribute() {
+        return json_decode($this->addons);
     }
     public function scopeDatatable($query,$request,$page=12)
     {

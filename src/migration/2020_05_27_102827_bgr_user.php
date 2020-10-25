@@ -18,9 +18,14 @@ class BgrUser extends Migration
             $table->id();
             $table->foreignId('id_level');
             $table->string('name');
+            $table->string('username')->unique();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('foto')->nullable();
+            $table->string('foto_path')->nullable();
+            $table->json('addons')->nullable();
+            $table->boolean('status')->default(1);
             $table->rememberToken();
             $table->timestamps();
         }); 
@@ -29,6 +34,7 @@ class BgrUser extends Migration
         $user->id               = 1;
         $user->id_level         = 1;
         $user->name             = 'Ginanjar Maulana';
+        $user->username         = 'ginda';
         $user->email            = 'ginda@bageur.com';
         $user->password         = Hash::make('123123');
         $user->save();
