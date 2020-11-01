@@ -4,7 +4,7 @@ namespace Bageur\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Bageur\Auth\model\user;
-use JWTAuth;
+use Illuminate\Support\Facades\Auth;
 use Tymon\JWTAuth\Exceptions\JWTException;
 class AuthController extends Controller
 {
@@ -27,7 +27,7 @@ class AuthController extends Controller
     {
        $credentials = $request->only('email', 'password');
         try {
-            if (! $token = JWTAuth::attempt($credentials)) {
+            if (! $token = Auth::attempt($credentials)) {
                 return response()->json(['error' => 'invalid_credentials'], 400);
             }
         } catch (JWTException $e) {
@@ -46,7 +46,7 @@ class AuthController extends Controller
     {
         try {
 
-            if (! $user = JWTAuth::parseToken()->authenticate()) {
+            if (! $user = Auth::parseToken()->authenticate()) {
                 return response()->json(['user_not_found'], 404);
             }
 
@@ -74,8 +74,7 @@ class AuthController extends Controller
      */
     public function logout()
     {
-        auth()->logout();
-
+        Auth::logout();
         return response()->json(['message' => 'Successfully logged out']);
     }
 
@@ -85,8 +84,9 @@ class AuthController extends Controller
      * @return \Illuminate\Http\JsonResponse
      */
     public function refresh()
-    {
-        return $this->respondWithToken(auth()->refresh());
+    {   
+        $user = Auth::refresh();
+        return $this->respondWithToken($user);
     }
 
     /**
