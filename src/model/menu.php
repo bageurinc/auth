@@ -3,7 +3,7 @@
 namespace Bageur\Auth\Model;
 
 use Illuminate\Database\Eloquent\Model;
-use Bageur\Auth\Processors\AvatarProcessor;
+use Bageur\Auth\Processors\Helper;
 
 class menu extends Model
 {
@@ -20,7 +20,7 @@ class menu extends Model
     }  
 
     public function getAvatarAttribute() {
-        return AvatarProcessor::get($this->nama,$this->icon);
+        return Helper::avatar($this->nama,$this->icon);
     }
 
     public function getBanyaksubAttribute() {

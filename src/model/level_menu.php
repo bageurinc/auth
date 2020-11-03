@@ -3,7 +3,7 @@
 namespace Bageur\Auth\Model;
 
 use Illuminate\Database\Eloquent\Model;
-use Bageur\Auth\Processors\AvatarProcessor;
+use Bageur\Auth\Processors\helper;
 class level_menu extends Model
 {
     protected $table   = 'bgr_level_menu';
@@ -14,6 +14,6 @@ class level_menu extends Model
          			 ->join('bgr_menu','bgr_menu.id','bgr_level_menu.id_menu');
     }   
     public function getAvatarAttribute() {
-        return AvatarProcessor::get($this->nama,$this->icon);
+        return helper::avatar($this->nama,$this->icon);
     }
 }
