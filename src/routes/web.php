@@ -4,7 +4,10 @@
 		Route::post('login', 'bageur\auth\AuthController@login')->middleware('guest');
 		Route::delete('logout', 'bageur\auth\AuthController@logout')->middleware('jwt.verify');
 		Route::post('refresh', 'bageur\auth\AuthController@refresh')->middleware('jwt.verify');
-		Route::post('me', 'bageur\auth\AuthController@me')->middleware('jwt.verify');
+        Route::post('me', 'bageur\auth\AuthController@me')->middleware('jwt.verify');
+        Route::post('forgot/create', 'bageur\auth\PasswordResetController@create')->middleware('guest');
+        Route::get('find/{token}', 'bageur\auth\PasswordResetController@find')->middleware('guest');
+        Route::post('reset', 'bageur\auth\PasswordResetController@reset')->middleware('guest');
 
 	});
 
