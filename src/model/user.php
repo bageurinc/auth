@@ -60,6 +60,11 @@ class user extends Authenticatable implements JWTSubject
         return Helper::avatar($this->name);
     }
 
+     public function level()
+    {
+         return $this->hasOne('Bageur\Auth\model\level','id','id_level');
+    }  
+
     public function getAddonsDataAttribute() {
         return json_decode($this->addons);
     }

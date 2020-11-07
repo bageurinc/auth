@@ -20,6 +20,7 @@ class UserController extends Controller
     {
         $rules    	= [
                         'name'                  => 'required|min:3',
+                        'username'              => 'required|unique:bgr_user',
                         'email'                 => 'required|unique:bgr_user|email',
                         'password'              => 'required|min:3|confirmed',
                         'password_confirmation' => 'required',
@@ -35,7 +36,8 @@ class UserController extends Controller
         }else{
             $user              		= new user;
             $user->id_level	        = 1;
-            $user->name	            = $request->name;
+            $user->username	        = $request->username;
+            $user->name             = $request->name;
             $user->email            = $request->email;
             $user->password         = Hash::make($request->password);
             $user->save();
