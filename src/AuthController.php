@@ -4,6 +4,7 @@ namespace Bageur\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Bageur\Auth\model\user;
+use Bageur\Auth\model\bageur_akses;
 use Illuminate\Support\Facades\Auth;
 use Tymon\JWTAuth\Exceptions\JWTException;
 class AuthController extends Controller
@@ -98,10 +99,42 @@ class AuthController extends Controller
      */
     protected function respondWithToken($token)
     {
+     $id_level = Auth::user()->id_level;
+     $data = bageur_akses::with(['sub_menu','action'])->whereNull('sub_id')->where('id_level',$id_level)->get();
+      $listing = [];
+      foreach ($data as $d => $rd) {
+        $listing[$rd->link] = $rd->granted == 0 ? false : true;
+        foreach ($rd->sub_menu as $a => $rs) {
+         $listing[$rs->link] = $rs->granted == 0 ? false : true;
+          foreach ($rs->action as $aa => $raa) {
+            if($raa->nama == 'delete'){
+              $listing[$rs->link.'-delete'] = $raa->granted == 0 ? false : true;
+            }else{
+              $listing[$raa->route] = $raa->granted == 0 ? false : true;
+            }
+          }
+        }
+
+        foreach ($rd->action as $a => $ra) {
+         if($ra->nama == 'delete'){
+              $listing[$rd->link.'-delete'] = $ra->granted == 0 ? false : true;
+            }else{
+              $listing[$ra->route] = $ra->granted == 0 ? false : true;
+            }
+        }
+
+      }
+
+      $menu = bageur_akses::with(['sub_menu' => function($query){
+              $query->where('granted','1');
+      }])->whereNull('sub_id')->where('granted','1')->where('id_level',$id_level)->orderBy('urutan','asc')->get();
+
         return response()->json([
-            'access_token' => $token,
-            'token_type' => 'bearer',
-            'expires_in' => auth()->factory()->getTTL() * 60
+            'access_token'  => $token,
+            'token_type'    => 'bearer',
+            'level_akses'   => $listing,
+            'menu'          => $menu,
+            'expires_in'    => auth()->factory()->getTTL() * 60
         ]);
     }
 }

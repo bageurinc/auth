@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Bageur\Auth\model\level;
 use Bageur\Auth\model\menu;
+use Bageur\Auth\model\level_akses;
 use Auth,Validator,DB;
 
 class MenuController extends Controller
@@ -19,7 +20,7 @@ class MenuController extends Controller
 
     public function menufull()
     {
-        $json = Menu::with('sub_menu')->orderby('urutan','asc')->whereNull('sub_id')->get();
+        $json = Menu::with(['sub_menu'])->orderby('urutan','asc')->whereNull('sub_id')->get();
         return $json;
         // $json = level::with(['fullmenu'])->find(Auth::user()->id_level);
         // $json['fullmenu']->each(function ($q) {
@@ -54,7 +55,7 @@ class MenuController extends Controller
     }
     public function index(Request $request)
     {
-         $menu =  menu::with(['sub_menu'])->datatable($request,30);
+         $menu =  menu::with(['sub_menu','action'])->datatable($request,30);
          $menu->each(function ($q) {
             $q->append('avatar');
             $q->append('banyaksub');
@@ -108,7 +109,6 @@ class MenuController extends Controller
             }
             $menu->nama       = $request->nama;
             $menu->judul      = $request->judul;
-            $menu->action     = 'index';
             $menu->link       = $request->link;
             $menu->seo_link   = Str::slug($request->link);
             if($request->file('files') != null){
@@ -118,6 +118,19 @@ class MenuController extends Controller
                 $menu->icon     = $SnameFile;
             }
             $menu->save();
+
+          foreach (level_akses::groupBy('id_level')->get() as $key => $value) {
+                $new                 = new level_akses;
+                $new->id_level       = $value->id_level;
+                if(!empty($request->sub_id)){
+                    $new->id_menu      = $menu->id;
+                    $new->sub_id       = level_akses::where('id_level',$value->id_level)->where('id_menu',$request->sub_id)->first()->id;
+                }else{
+                    $new->id_menu      = $menu->id;
+                }
+                $new->save();
+          }
+
             return response(['status' => true ,'text'    => 'has input'], 200); 
         }
     }
@@ -150,7 +163,6 @@ class MenuController extends Controller
             }
             $menu->nama       = $request->nama;
             $menu->judul      = $request->judul;
-            $menu->action     = 'index';
             $menu->link       = $request->link;
             $menu->seo_link   = Str::slug($request->link);
             if($request->file('files') != null){

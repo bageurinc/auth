@@ -16,6 +16,8 @@ class AuthServiceProvider extends ServiceProvider
         $this->app->make('Bageur\Auth\UserController');
         $this->app->make('Bageur\Auth\AuthController');
         $this->app->make('Bageur\Auth\MenuController');
+        $this->app->make('Bageur\Auth\LevelController');
+        $this->app->make('Bageur\Auth\MenuActionController');
        
     }
 

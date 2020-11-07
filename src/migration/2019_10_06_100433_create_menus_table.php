@@ -22,7 +22,6 @@ class CreateMenusTable extends Migration
             $table->string('sub_nama')->nullable();
             $table->string('judul');
             $table->string('link');
-            $table->string('action'); //view , edit , tambah , detail , delete dll
             $table->text('seo_link');
             $table->double('urutan')->nullable();
             $table->boolean('status')->default(true);
