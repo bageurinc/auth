@@ -25,6 +25,7 @@ class CreateMenusTable extends Migration
             $table->text('seo_link');
             $table->double('urutan')->nullable();
             $table->boolean('status')->default(true);
+            $table->boolean('super_admin')->default(false);
             $table->timestamps();
         });
 

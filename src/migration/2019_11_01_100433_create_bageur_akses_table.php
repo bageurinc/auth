@@ -30,6 +30,7 @@ class CreateBageurAksesTable extends Migration
             `bgr_menu`.`seo_link` AS `seo_link`,
             `bgr_menu`.`urutan` AS `urutan`,
             `bgr_menu`.`status` AS `status`,
+            `bgr_menu`.`super_admin` AS `super_admin`,
             `bgr_level_akses`.`granted` AS `granted` 
         FROM
             (

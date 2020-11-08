@@ -21,7 +21,7 @@
 			Route::apiResource('user', 'bageur\auth\UserController')->middleware('jwt.verify');
 			Route::apiResource('level', 'bageur\auth\LevelController')->middleware('jwt.verify');
 			Route::apiResource('menu.action', 'bageur\auth\MenuActionController')->middleware('jwt.verify');
-			Route::get('bageur-akses/{id}', 'bageur\auth\LevelController@bageur_akses');
+			Route::get('bageur-akses/{id}', 'bageur\auth\LevelController@bageur_akses')->middleware('jwt.verify');
 			Route::post('level-setup/{id}', 'bageur\auth\LevelController@setup')->middleware('jwt.verify');
 
 			Route::get('menu-showseo/{link}', 'bageur\auth\MenuController@showseo')->middleware('jwt.verify');
