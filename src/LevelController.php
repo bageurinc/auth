@@ -93,22 +93,22 @@ class LevelController extends Controller
     }
 
     public function bageur_akses(Request $request,$id){
-        $super_admin = \Auth::user()->level->super_admin;
+        // $super_admin = \Auth::user()->level->super_admin;
         // return $super_admin;
         if(level_akses::where('id_level',$id)->count() > 0){
-            return bageur_akses::with(['sub_menu' =>function($query) use ($super_admin){
-               $query->where('super_admin',$super_admin);
+            return bageur_akses::with(['sub_menu' =>function($query){
+               $query->superadmin();
             },'action'])
                                ->orderBy('urutan','asc')
                                ->whereNull('sub_id')
-                               ->where('super_admin',$super_admin)
+                               ->superadmin()
                                ->where('id_level',$id)
                                ->get();
         }else{
-            return  menu::select('*','id as menu_id')->orderBy('urutan','asc')->with(['sub_menu' => function($query) use ($super_admin){
+            return  menu::select('*','id as menu_id')->orderBy('urutan','asc')->with(['sub_menu' => function($query){
                 $query->select('*','id as menu_id');
-                $query->where('super_admin',$super_admin);
-            },'action'])->where('super_admin',$super_admin)->whereNull('sub_id')->get();
+                $query->superadmin();
+            },'action'])->superadmin()->whereNull('sub_id')->get();
         }
     }
     public function setup(Request $request,$id)

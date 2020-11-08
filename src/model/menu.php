@@ -26,6 +26,13 @@ class menu extends Model
     public function getBanyaksubAttribute() {
             return count($this->sub_menu);
     }
+     public function scopeSuperadmin($query)
+    {
+        $super_admin = \Auth::user()->level->super_admin;
+        if($super_admin != 1){
+           $query->where('super_admin',0);
+        }
+    }
     public function scopeDatatable($query,$request,$page=12)
     {
           $search       = ["nama"];

@@ -35,6 +35,13 @@ class bageur_akses extends Model
     	}
     }
 
+    public function scopeSuperadmin($query)
+    {
+        $super_admin = \Auth::user()->level->super_admin;
+        if($super_admin != 1){
+           $query->where('super_admin',0);
+        }
+    }
     public function scopeDatatable($query)
     {
          $query->whereNull('sub_id');
