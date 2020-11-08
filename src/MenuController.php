@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Bageur\Auth\model\level;
 use Bageur\Auth\model\menu;
+use Bageur\Auth\model\bageur_akses;
 use Bageur\Auth\model\level_akses;
 use Auth,Validator,DB;
 
@@ -69,7 +70,14 @@ class MenuController extends Controller
     }
     public function showseo($seo_link)
     {
-       $menu         = menu::with(['sub_menu'])->where('seo_link',$seo_link)->firstOrFail();
+       $id_level = Auth::user()->id_level;
+       $menu         = bageur_akses::with(['sub_menu' => function($query){
+                                        $query->where('granted','1');
+                                     }])
+                                   ->where('granted','1')
+                                   ->where('id_level',$id_level)
+                                   ->where('seo_link',$seo_link)
+                                   ->firstOrFail();
        return $menu;
     }
 
