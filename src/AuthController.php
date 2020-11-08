@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Bageur\Auth\model\user;
 use Bageur\Auth\model\bageur_akses;
+use Bageur\Company\model\company;
 use Illuminate\Support\Facades\Auth;
 use Tymon\JWTAuth\Exceptions\JWTException;
 class AuthController extends Controller
@@ -26,9 +27,10 @@ class AuthController extends Controller
      */
     public function login(Request $request)
     {
-       $credentials = $request->only('email', 'password');
         try {
-            if (! $token = Auth::attempt($credentials)) {
+            $input = $request->all();
+            $fieldType = filter_var($request->email, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
+            if(! $token = Auth::attempt([$fieldType => $input['email'], 'password' => $input['password']])){
                 return response()->json(['error' => 'invalid_credentials'], 400);
             }
         } catch (JWTException $e) {
@@ -125,15 +127,21 @@ class AuthController extends Controller
 
       }
 
-      $menu = bageur_akses::with(['sub_menu' => function($query){
-              $query->where('granted','1');
-      }])->whereNull('sub_id')->where('granted','1')->where('id_level',$id_level)->orderBy('urutan','asc')->get();
+      $menu        = bageur_akses::with(['sub_menu' => function($query){
+                            $query->where('granted','1');
+                     }])->whereNull('sub_id')->where('granted','1')
+                        ->where('id_level',$id_level)
+                        ->orderBy('urutan','asc')
+                        ->get();
+
+      $perusahaan = company::find(1);
 
         return response()->json([
             'access_token'  => $token,
             'token_type'    => 'bearer',
             'level_akses'   => $listing,
             'menu'          => $menu,
+            'perusahaan'    => $perusahaan,
             'expires_in'    => auth()->factory()->getTTL() * 60
         ]);
     }
