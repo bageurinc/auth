@@ -1,26 +1,24 @@
 <?php
 
-namespace Bageur\Auth\Notifications;
+namespace Bageur\Auth\notifications;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class PasswordResetRequest extends Notification implements ShouldQueue
+class PasswordResetSuccess extends Notification implements ShouldQueue
 {
     use Queueable;
-
-    protected $token;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($token)
+    public function __construct()
     {
-        $this->token = $token;
+        //
     }
 
     /**
@@ -42,11 +40,10 @@ class PasswordResetRequest extends Notification implements ShouldQueue
      */
     public function toMail($notifiable)
     {
-
         return (new MailMessage)
-        ->view(
-            'bageur::email.resetkode', ['notifiable' => $notifiable , 'token' => $this->token]
-        );
+            ->line('You are changed your password successful.')
+            ->line('If you did change password, no further action is required.')
+            ->line('If you did not change password, protect your account.');
     }
 
     /**
