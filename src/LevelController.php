@@ -15,7 +15,7 @@ class LevelController extends Controller
 
     public function index(Request $request)
     {
-       $query = level::datatable($request);
+       $query = level::where('super_admin',0)->datatable($request);
        return $query;
     }
 
@@ -48,7 +48,7 @@ class LevelController extends Controller
      */
     public function show($id)
     {
-        return level::findOrFail($id);
+        return level::where('super_admin',0)->findOrFail($id);
     }
 
     /**

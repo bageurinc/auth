@@ -18,6 +18,7 @@ class CreateLevelsTable extends Migration
             $table->bigIncrements('id');
             $table->string('nama');
             $table->boolean('status')->default(true);
+            $table->boolean('super_admin')->default(false);
             $table->timestamps();
         });
 
