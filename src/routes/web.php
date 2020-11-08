@@ -5,6 +5,11 @@
 		Route::delete('logout', 'bageur\auth\AuthController@logout')->middleware('jwt.verify');
 		Route::post('refresh', 'bageur\auth\AuthController@refresh')->middleware('jwt.verify');
         Route::post('me', 'bageur\auth\AuthController@me')->middleware('jwt.verify');
+  //       Route::get('forgot/create', function () {
+  //       	$notifiable = \Bageur\Auth\Model\user::find(1);
+  //       	$token = 'YiukPUFSVfrwEs2CG8OmfvglELY61o82yNj261A72jUJu9zEcpWAiXvgMpjK';
+		//     return view('bageur::email.resetkode',compact('notifiable','token'));
+		// });
         Route::post('forgot/create', 'bageur\auth\PasswordResetController@create')->middleware('guest');
         Route::get('find/{token}', 'bageur\auth\PasswordResetController@find')->middleware('guest');
         Route::post('reset', 'bageur\auth\PasswordResetController@reset')->middleware('guest');
