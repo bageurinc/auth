@@ -30,7 +30,7 @@ class CreateActionTable extends Migration
         $action                         = new action;
         $action->id                     = 1;
         $action->urutan                 = 1;
-        $action->menu_id                = 2;
+        $action->menu_id                = 3;
         $action->nama                   = 'submenu';
         $action->route                  = 'pengaturan-menu-submenu-id';
         $action->icon                   = 'menu';
@@ -39,7 +39,7 @@ class CreateActionTable extends Migration
         $action                         = new action;
         $action->id                     = 2;
         $action->urutan                 = 2;
-        $action->menu_id                = 2;
+        $action->menu_id                = 3;
         $action->nama                   = 'action';
         $action->route                  = 'pengaturan-menu-action-id';
         $action->icon                   = 'access-point';
@@ -48,7 +48,7 @@ class CreateActionTable extends Migration
         $action                         = new action;
         $action->id                     = 3;
         $action->urutan                 = 3;
-        $action->menu_id                = 2;
+        $action->menu_id                = 3;
         $action->nama                   = 'delete';
         $action->icon                   = 'delete-circle';
         $action->save();
@@ -56,7 +56,7 @@ class CreateActionTable extends Migration
         $action                         = new action;
         $action->id                     = 4;
         $action->urutan                 = 4;
-        $action->menu_id                = 2;
+        $action->menu_id                = 3;
         $action->nama                   = 'edit';
         $action->icon                   = 'clipboard-edit';
         $action->route                  = 'pengaturan-menu-edit';
@@ -65,7 +65,7 @@ class CreateActionTable extends Migration
         $action                         = new action;
         $action->id                     = 5;
         $action->urutan                 = 5;
-        $action->menu_id                = 2;
+        $action->menu_id                = 3;
         $action->nama                   = 'add';
         $action->icon                   = 'plus-box';
         $action->route                  = 'pengaturan-menu-add';
@@ -74,7 +74,7 @@ class CreateActionTable extends Migration
         $action                         = new action;
         $action->id                     = 6;
         $action->urutan                 = 6;
-        $action->menu_id                = 2;
+        $action->menu_id                = 3;
         $action->nama                   = 'sub menu add';
         $action->icon                   = 'plus-box';
         $action->route                  = 'pengaturan-menu-submenu-id-add';
@@ -83,7 +83,7 @@ class CreateActionTable extends Migration
         $action                         = new action;
         $action->id                     = 7;
         $action->urutan                 = 7;
-        $action->menu_id                = 2;
+        $action->menu_id                = 3;
         $action->nama                   = 'add action';
         $action->icon                   = 'plus-box';
         $action->route                  = 'pengaturan-menu-action-id-add';

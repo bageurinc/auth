@@ -41,12 +41,22 @@ class CreateMenusTable extends Migration
 
         $menu = new menu;
         $menu->id                 = 2;
+        $menu->nama               = 'pengaturan';
+        $menu->judul              = 'pengaturan';
+        $menu->link               = 'pengaturan';
+        $menu->seo_link           = 'pengaturan';
+        $menu->urutan             = 1;
+        $menu->status             = 1;
+        $menu->save();
+
+        $menu = new menu;
+        $menu->id                 = 3;
         $menu->nama               = 'Menu';
         $menu->judul              = 'Menu';
         $menu->link               = 'pengaturan-menu';
         $menu->seo_link           = 'pengaturan-menu';
-        $menu->urutan               = 1;
-        $menu->status               = 1;
+        $menu->urutan             = 1;
+        $menu->status             = 1;
         $menu->save();
     }
 

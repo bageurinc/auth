@@ -46,6 +46,13 @@ class CreateLevelAksesTable extends Migration
         $menu->id_menu            = 2;
         $menu->granted            = 1;
         $menu->save();
+
+        $menu                     = new level_akses;
+        $menu->id                 = 3;
+        $menu->id_level           = 1;
+        $menu->id_menu            = 3;
+        $menu->granted            = 1;
+        $menu->save();
     }
 
     /**
