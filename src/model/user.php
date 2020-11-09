@@ -68,15 +68,21 @@ class user extends Authenticatable implements JWTSubject
     public function getAddonsDataAttribute() {
         return json_decode($this->addons);
     }
+     public function scopeSuperadmin($query)
+    {
+        $super_admin = \Auth::user()->level->super_admin;
+        if($super_admin != 1){
+           $query->where('super_admin',0);
+        }
+    }
     public function scopeDatatable($query,$request,$page=12)
     {
-        $search       = ["name",'email','username','bgr_level.nama'];
+        $search       = ["name",'email','username'];
         $searchqry    = '';
-
         $searchqry = "(";
-        $query->join('bgr_level','bgr_level.id','bgr_user.id_level');
-        $query->select('bgr_user.*','bgr_level.nama');
-        $query->where('bgr_level.super_admin','!=',1);
+        // $query->join('bgr_level','bgr_level.id','bgr_user.id_level');
+        // $query->select('bgr_user.*','bgr_level.nama');
+        // $query->where('bgr_level.super_admin','!=',1);
         foreach ($search as $key => $value) {
             if($key == 0){
                 $searchqry .= "lower($value) like '%".strtolower($request->search)."%'";

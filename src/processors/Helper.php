@@ -28,4 +28,19 @@ class Helper {
 	    $arr = ['up' => basename($up) , 'path' => $path];
 	    return $arr;
     }
+
+      function avatarbase64($data,$loc,$id_user = null,$prefix = 'bageur')
+      {
+        $path       = $loc;
+        $namaBerkas = $prefix.'-'.date('ymdhis').'.png';
+        if($id_user != null){
+            $user   = \App\User::findOrFail($id_user);
+            $path   = $user->username.'/'.$loc;
+            \Storage::makeDirectory('public/'.$path);
+        }
+        $image = \Image::make($data);
+        $image->save(storage_path('app/public/'.$path.'/'.$namaBerkas));
+        $arr = ['up' => $namaBerkas , 'path' => $path];
+        return $arr;
+      }
 }

@@ -9,20 +9,16 @@ class level extends Model
 {
     protected $table   = 'bgr_level';
     protected $appends = ['avatar'];
-     public function fullmenu()
-    {
-         return $this->hasMany('Bageur\Auth\model\level_menu','id_level')
-         			 ->whereNull('bgr_menu.sub_id')
-         			 ->where('bgr_menu.status',1)
-                     ->where('bgr_level_menu.view',true)
-         			 ->whereNull('bgr_level_menu.id_submenu')
-          			 ->with('submenu')
-          			 ->orderBy('bgr_menu.urutan','asc')
-         			 ->join('bgr_menu','bgr_menu.id','bgr_level_menu.id_menu');
-         			 // ->with('menu');
-    }
+ 
     public function getAvatarAttribute() {
         return Helper::avatar($this->nama);
+    }
+    public function scopeSuperadmin($query)
+    {
+        $super_admin = \Auth::user()->level->super_admin;
+        if($super_admin != 1){
+           $query->where('super_admin',0);
+        }
     }
     public function scopeDatatable($query,$request,$page=12)
     {

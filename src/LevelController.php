@@ -15,17 +15,17 @@ class LevelController extends Controller
 
     public function index(Request $request)
     {
-       $query = level::where('super_admin',0)->datatable($request);
+       $query = level::superadmin()->datatable($request);
        return $query;
     }
 
     public function store(Request $request)
     {
-        $rules    	= [
+        $rules      = [
                         'nama'                  => 'required|min:3'
                       ];
 
-        $messages 	= [];
+        $messages   = [];
         $attributes = [];
 
         $validator = \Validator::make($request->all(), $rules,$messages,$attributes);
@@ -33,8 +33,8 @@ class LevelController extends Controller
             $errors = $validator->errors();
             return response(['status' => false ,'error'    =>  $errors->all()], 200);
         }else{
-            $level              		= new level;
-            $level->nama	            = $request->nama;
+            $level                      = new level;
+            $level->nama                = $request->nama;
             $level->save();
             return response(['status' => true ,'text'    => 'has input'], 200); 
         }
@@ -48,7 +48,7 @@ class LevelController extends Controller
      */
     public function show($id)
     {
-        return level::where('super_admin',0)->findOrFail($id);
+        return level::superadmin()->findOrFail($id);
     }
 
     /**
