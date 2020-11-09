@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
-use Bageur\Auth\model\menu;
+use Bageur\Auth\model\action;
 
 class CreateActionTable extends Migration
 {
@@ -26,6 +26,62 @@ class CreateActionTable extends Migration
             $table->double('urutan');
             $table->timestamps();
         });
+
+        $action                         = new action;
+        $action->id                     = 1;
+        $action->menu_id                = 2;
+        $action->nama                   = 'submenu';
+        $action->route                  = 'pengaturan-menu-submenu-id';
+        $action->icon                   = 'menu';
+        $action->save();
+
+        $action                         = new action;
+        $action->id                     = 2;
+        $action->menu_id                = 2;
+        $action->nama                   = 'action';
+        $action->route                  = 'pengaturan-menu-action-id';
+        $action->icon                   = 'access-point';
+        $action->save();
+
+        $action                         = new action;
+        $action->id                     = 3;
+        $action->menu_id                = 2;
+        $action->nama                   = 'delete';
+        $action->icon                   = 'delete-circle';
+        $action->save();
+
+        $action                         = new action;
+        $action->id                     = 4;
+        $action->menu_id                = 2;
+        $action->nama                   = 'edit';
+        $action->icon                   = 'clipboard-edit';
+        $action->route                  = 'pengaturan-menu-edit';
+        $action->save();
+
+        $action                         = new action;
+        $action->id                     = 5;
+        $action->menu_id                = 2;
+        $action->nama                   = 'add';
+        $action->icon                   = 'plus-box';
+        $action->route                  = 'pengaturan-menu-add';
+        $action->save();
+
+        $action                         = new action;
+        $action->id                     = 6;
+        $action->menu_id                = 2;
+        $action->nama                   = 'sub menu add';
+        $action->icon                   = 'plus-box';
+        $action->route                  = 'pengaturan-menu-submenu-id-add';
+        $action->save();
+
+        $action                         = new action;
+        $action->id                     = 7;
+        $action->menu_id                = 2;
+        $action->nama                   = 'add action';
+        $action->icon                   = 'plus-box';
+        $action->route                  = 'pengaturan-menu-action-id-add';
+        $action->save();
+
     }
 
     /**

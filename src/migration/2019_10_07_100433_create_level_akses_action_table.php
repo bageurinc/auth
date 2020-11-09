@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
-use Bageur\Auth\model\menu;
+use Bageur\Auth\model\level_akses_action;
 
 class CreateLevelAksesActionTable extends Migration
 {
@@ -26,6 +26,40 @@ class CreateLevelAksesActionTable extends Migration
                                          ->on('bgr_level_akses')
                                          ->onDelete('cascade');
         });
+
+        $action                         = new level_akses_action;
+        $action->id_level_akses         = 2;
+        $action->id_action              = 1;
+        $action->save();
+
+        $action                         = new level_akses_action;
+        $action->id_level_akses         = 2;
+        $action->id_action              = 2;
+        $action->save();
+
+        $action                         = new level_akses_action;
+        $action->id_level_akses         = 2;
+        $action->id_action              = 3;
+
+        $action                         = new level_akses_action;
+        $action->id_level_akses         = 2;
+        $action->id_action              = 4;
+        $action->save();
+
+        $action                         = new level_akses_action;
+        $action->id_level_akses         = 2;
+        $action->id_action              = 5;
+        $action->save();
+
+        $action                         = new level_akses_action;
+        $action->id_level_akses         = 2;
+        $action->id_action              = 6;
+        $action->save();
+
+        $action                         = new level_akses_action;
+        $action->id_level_akses         = 2;
+        $action->id_action              = 7;
+        $action->save();
     }
 
     /**

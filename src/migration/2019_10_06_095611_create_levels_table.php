@@ -24,8 +24,9 @@ class CreateLevelsTable extends Migration
 
         $level = new level;
         $level->id               = 1;
-        $level->nama             = 'admin';
+        $level->nama             = 'super admin';
         $level->status           = 1;
+        $level->super_admin      = 1;
         $level->save();
     }
 

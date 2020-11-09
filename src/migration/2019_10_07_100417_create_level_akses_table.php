@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
-use Bageur\Auth\model\level_menu;
+use Bageur\Auth\model\level_akses;
 
 class CreateLevelAksesTable extends Migration
 {
@@ -32,6 +32,20 @@ class CreateLevelAksesTable extends Migration
                                          ->onUpdate('cascade')
                                          ->onDelete('cascade');
         });
+
+        $menu                     = new level_akses;
+        $menu->id                 = 1;
+        $menu->id_level           = 1;
+        $menu->id_menu            = 1;
+        $menu->granted            = 1;
+        $menu->save();
+
+        $menu                     = new level_akses;
+        $menu->id                 = 2;
+        $menu->id_level           = 1;
+        $menu->id_menu            = 2;
+        $menu->granted            = 1;
+        $menu->save();
     }
 
     /**
