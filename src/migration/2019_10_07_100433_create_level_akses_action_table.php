@@ -27,47 +27,47 @@ class CreateLevelAksesActionTable extends Migration
                                          ->onDelete('cascade');
         });
 
-        $action                         = new level_akses_action;
-        $action->id_level_akses         = 3;
-        $action->id_action              = 1;
-        $action->granted                = 1;
-        $action->save();
+        // $action                         = new level_akses_action;
+        // $action->id_level_akses         = 3;
+        // $action->id_action              = 1;
+        // $action->granted                = 1;
+        // $action->save();
 
-        $action                         = new level_akses_action;
-        $action->id_level_akses         = 3;
-        $action->id_action              = 2;
-        $action->granted                = 1;
-        $action->save();
+        // $action                         = new level_akses_action;
+        // $action->id_level_akses         = 3;
+        // $action->id_action              = 2;
+        // $action->granted                = 1;
+        // $action->save();
 
-        $action                         = new level_akses_action;
-        $action->id_level_akses         = 3;
-        $action->id_action              = 3;
-        $action->granted                = 1;
-        $action->save();
+        // $action                         = new level_akses_action;
+        // $action->id_level_akses         = 3;
+        // $action->id_action              = 3;
+        // $action->granted                = 1;
+        // $action->save();
         
-        $action                         = new level_akses_action;
-        $action->id_level_akses         = 3;
-        $action->id_action              = 4;
-        $action->granted                = 1;
-        $action->save();
+        // $action                         = new level_akses_action;
+        // $action->id_level_akses         = 3;
+        // $action->id_action              = 4;
+        // $action->granted                = 1;
+        // $action->save();
 
-        $action                         = new level_akses_action;
-        $action->id_level_akses         = 3;
-        $action->id_action              = 5;
-        $action->granted                = 1;
-        $action->save();
+        // $action                         = new level_akses_action;
+        // $action->id_level_akses         = 3;
+        // $action->id_action              = 5;
+        // $action->granted                = 1;
+        // $action->save();
 
-        $action                         = new level_akses_action;
-        $action->id_level_akses         = 3;
-        $action->id_action              = 6;
-        $action->granted                = 1;
-        $action->save();
+        // $action                         = new level_akses_action;
+        // $action->id_level_akses         = 3;
+        // $action->id_action              = 6;
+        // $action->granted                = 1;
+        // $action->save();
 
-        $action                         = new level_akses_action;
-        $action->id_level_akses         = 3;
-        $action->id_action              = 7;
-        $action->granted                = 1;
-        $action->save();
+        // $action                         = new level_akses_action;
+        // $action->id_level_akses         = 3;
+        // $action->id_action              = 7;
+        // $action->granted                = 1;
+        // $action->save();
     }
 
     /**

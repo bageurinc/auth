@@ -29,36 +29,36 @@ class CreateMenusTable extends Migration
             $table->timestamps();
         });
 
-        $menu = new menu;
-        $menu->id                 = 1;
-        $menu->nama               = 'Home';
-        $menu->judul              = 'Home';
-        $menu->link               = 'home';
-        $menu->seo_link           = 'home';
-        $menu->urutan               = 1;
-        $menu->status               = 1;
-        $menu->save();
+        // $menu = new menu;
+        // $menu->id                 = 1;
+        // $menu->nama               = 'Home';
+        // $menu->judul              = 'Home';
+        // $menu->link               = 'home';
+        // $menu->seo_link           = 'home';
+        // $menu->urutan               = 1;
+        // $menu->status               = 1;
+        // $menu->save();
 
-        $menu = new menu;
-        $menu->id                 = 2;
-        $menu->nama               = 'pengaturan';
-        $menu->judul              = 'pengaturan';
-        $menu->link               = 'pengaturan';
-        $menu->seo_link           = 'pengaturan';
-        $menu->urutan             = 1;
-        $menu->status             = 1;
-        $menu->save();
+        // $menu = new menu;
+        // $menu->id                 = 2;
+        // $menu->nama               = 'pengaturan';
+        // $menu->judul              = 'pengaturan';
+        // $menu->link               = 'pengaturan';
+        // $menu->seo_link           = 'pengaturan';
+        // $menu->urutan             = 1;
+        // $menu->status             = 1;
+        // $menu->save();
 
-        $menu = new menu;
-        $menu->id                 = 3;
-        $menu->sub_id             = 2;
-        $menu->nama               = 'Menu';
-        $menu->judul              = 'Menu';
-        $menu->link               = 'pengaturan-menu';
-        $menu->seo_link           = 'pengaturan-menu';
-        $menu->urutan             = 1;
-        $menu->status             = 1;
-        $menu->save();
+        // $menu = new menu;
+        // $menu->id                 = 3;
+        // $menu->sub_id             = 2;
+        // $menu->nama               = 'Menu';
+        // $menu->judul              = 'Menu';
+        // $menu->link               = 'pengaturan-menu';
+        // $menu->seo_link           = 'pengaturan-menu';
+        // $menu->urutan             = 1;
+        // $menu->status             = 1;
+        // $menu->save();
     }
 
     /**
