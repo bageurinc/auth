@@ -51,6 +51,7 @@ class CreateMenusTable extends Migration
 
         $menu = new menu;
         $menu->id                 = 3;
+        $menu->sub_id             = 2;
         $menu->nama               = 'Menu';
         $menu->judul              = 'Menu';
         $menu->link               = 'pengaturan-menu';
