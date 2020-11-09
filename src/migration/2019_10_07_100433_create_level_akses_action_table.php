@@ -40,7 +40,8 @@ class CreateLevelAksesActionTable extends Migration
         $action                         = new level_akses_action;
         $action->id_level_akses         = 2;
         $action->id_action              = 3;
-
+        $action->save();
+        
         $action                         = new level_akses_action;
         $action->id_level_akses         = 2;
         $action->id_action              = 4;
