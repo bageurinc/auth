@@ -3,8 +3,6 @@
 namespace Bageur\Auth\Model;
 
 use Illuminate\Database\Eloquent\Model;
-use Bageur\Auth\Processors\Helper;
-
 class bageur_akses_action extends Model
 {
     protected $table   = 'bageur_akses_action';

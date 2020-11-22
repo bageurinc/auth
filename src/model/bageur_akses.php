@@ -3,7 +3,6 @@
 namespace Bageur\Auth\Model;
 
 use Illuminate\Database\Eloquent\Model;
-use Bageur\Auth\Processors\Helper;
 class bageur_akses extends Model
 {
     protected $table   = 'bageur_akses';
@@ -18,7 +17,7 @@ class bageur_akses extends Model
     }  
 
     public function getAvatarAttribute() {
-        return Helper::avatar($this->nama,$this->icon);
+        return \Bageur::avatar($this->nama,$this->icon,'iconmenu');
     }
     
     public function action()

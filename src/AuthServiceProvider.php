@@ -20,6 +20,9 @@ class AuthServiceProvider extends ServiceProvider
         $this->app->make('Bageur\Auth\LevelController');
         $this->app->make('Bageur\Auth\MenuActionController');
        
+       $this->app->bind('bageur',function(){
+            return new Facades\Bageur();
+        });
     }
 
     /**
@@ -33,17 +36,9 @@ class AuthServiceProvider extends ServiceProvider
         $this->loadRoutesFrom(__DIR__.'/routes/web.php');
         $this->loadMigrationsFrom(__DIR__.'/migration');
         $this->publishes([
-                             __DIR__.'/config/auth.php' => config_path('bageur/auth.php'),
-                             __DIR__.'/assets' => public_path('vendor/bageur'),
+                             __DIR__.'/config/auth.php'                 => config_path('bageur/auth.php'),
+                             __DIR__.'/assets'                          => public_path('vendor/bageur'),
+                             __DIR__.'/middleware/BageurMiddleware.php' => app_path('http/Middleware/BageurMiddleware.php'),
                          ], 'bageur-auth');
-        // $this->publishes([
-        //     __DIR__.'/config/auth.php' => config_path('auth.php'),
-        //  ]);       
-         $this->publishes([
-            __DIR__.'/middleware/JwtMiddleware.php' => app_path('http/Middleware/JwtMiddleware.php'),
-         ],'JwtMiddleware');         
-         // $this->publishes([
-         //    __DIR__.'/middleware/Kernel.php' => app_path('http/Kernel.php'),
-         // ]);
     }
 }

@@ -11,7 +11,7 @@ composer require bageur/auth
 ```
 2.vendor:publish
 ```bash
- php artisan vendor:publish --tag=JwtMiddleware
+ php artisan vendor:publish --tag=bageur-auth
 ```
 
 ## Usage
