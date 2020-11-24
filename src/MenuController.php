@@ -65,7 +65,7 @@ class MenuController extends Controller
     }
     public function show($id)
     {
-       $menu         = menu::with(['sub'])->find($id);
+       $menu         = menu::find($id);
        return $menu;
     }
     public function showseo($seo_link)
@@ -120,10 +120,7 @@ class MenuController extends Controller
             $menu->link       = $request->link;
             $menu->seo_link   = Str::slug($request->link);
             if($request->file('files') != null){
-                @Storage::disk('local')->delete('public/iconmenu/'.$menu->gambar);
-                 $SnameFile = time().'.'.$request->file('files')->getClientOriginalExtension();
-                 Storage::disk('local')->putFileAs('public/'.'iconmenu', $request->file('files'),$SnameFile);
-                $menu->icon     = $SnameFile;
+                $menu->icon     = \Bageur::blob($request->file('files'),'iconmenu')['up'];
             }
             $menu->save();
 
@@ -174,10 +171,7 @@ class MenuController extends Controller
             $menu->link       = $request->link;
             $menu->seo_link   = Str::slug($request->link);
             if($request->file('files') != null){
-                @Storage::disk('local')->delete('public/iconmenu/'.$menu->gambar);
-                 $SnameFile = time().'.'.$request->file('files')->getClientOriginalExtension();
-                 Storage::disk('local')->putFileAs('public/'.'iconmenu', $request->file('files'),$SnameFile);
-                $menu->icon     = $SnameFile;
+                $menu->icon     = \Bageur::blob($request->file('files'),'iconmenu')['up'];
             }
             $menu->save();
             return response(['status' => true ,'text'    => 'has input'], 200); 

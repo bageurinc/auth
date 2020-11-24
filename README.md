@@ -1,7 +1,7 @@
 # Gini Installnya
 
 ini untuk cms bageur ya :).
-jangan lupa plugin ini butuh JWT
+jangan lupa plugin ini butuh
 [JWT AUTH](https://jwt-auth.readthedocs.io/en/develop/laravel-installation/)
 
 ## Installation
@@ -11,7 +11,7 @@ composer require bageur/auth
 ```
 2.vendor:publish
 ```bash
- php artisan vendor:publish
+ php artisan vendor:publish --tag=bageur-auth
 ```
 Pilih Tag : Bageur-auth
 

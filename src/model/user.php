@@ -57,7 +57,7 @@ class user extends Authenticatable implements JWTSubject
     }
 
     public function getAvatarAttribute() {
-        return Helper::avatar($this->name);
+        return \Bageur::avatar($this->name);
     }
 
      public function level()

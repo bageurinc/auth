@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Bageur\Auth\model\user;
 use Bageur\Auth\model\menu;
 use Bageur\Auth\model\action;
 use Bageur\Auth\model\level_akses;
@@ -18,6 +19,16 @@ class seed extends Migration
     public function up()
     {
 
+
+        $user = new user;
+        $user->id               = 1;
+        $user->id_level         = 1;
+        $user->name             = 'Ginanjar Maulana';
+        $user->username         = 'ginda';
+        $user->email            = 'ginda@bageur.com';
+        $user->password         = Hash::make('123123');
+        $user->save();
+        
 $bgr_action = array(
   array('id' => '1','menu_id' => '3','nama' => 'submenu','route' => 'pengaturan-menu-submenu-id','icon' => 'menu','icon_vendor' => 'mdi','status' => '1','show' => '1','urutan' => '1','created_at' => '2020-11-09 15:58:01','updated_at' => '2020-11-09 15:58:01'),
   array('id' => '2','menu_id' => '3','nama' => 'action','route' => 'pengaturan-menu-action-id','icon' => 'access-point','icon_vendor' => 'mdi','status' => '1','show' => '1','urutan' => '2','created_at' => '2020-11-09 15:58:01','updated_at' => '2020-11-09 15:58:01'),

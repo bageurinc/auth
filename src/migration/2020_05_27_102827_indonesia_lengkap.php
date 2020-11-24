@@ -13,7 +13,7 @@ class IndonesiaLengkap extends Migration
      */
     public function up()
     {
-       \DB::unprepared(__DIR__.'/migration/indonesia.sql');
+       \DB::unprepared(file_get_contents(__DIR__.'/indonesia.sql'));
     }
 
     /**
@@ -23,6 +23,10 @@ class IndonesiaLengkap extends Migration
      */
     public function down()
     {
-
+        Schema::dropIfExists('bgr_indonesia_jenis');
+        Schema::dropIfExists('bgr_indonesia_provinsi');
+        Schema::dropIfExists('bgr_indonesia_kabupaten');
+        Schema::dropIfExists('bgr_indonesia_kecamatan');
+        Schema::dropIfExists('bgr_indonesia_kelurahan');
     }
 }

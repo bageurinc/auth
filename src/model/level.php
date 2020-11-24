@@ -3,15 +3,13 @@
 namespace Bageur\Auth\Model;
 
 use Illuminate\Database\Eloquent\Model;
-use Bageur\Auth\Processors\Helper;
-
 class level extends Model
 {
     protected $table   = 'bgr_level';
     protected $appends = ['avatar'];
  
     public function getAvatarAttribute() {
-        return Helper::avatar($this->nama);
+        return \Bageur::avatar($this->nama);
     }
     public function scopeSuperadmin($query)
     {
