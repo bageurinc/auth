@@ -11,7 +11,7 @@ composer require bageur/auth
 ```
 2.vendor:publish
 ```bash
- php artisan vendor:publish --tag=bageur-auth
+ php artisan vendor:publish --tag=bageur-auth --force
 ```
 Pilih Tag : Bageur-auth
 
@@ -51,7 +51,7 @@ Pilih Tag : Bageur-auth
 ```php
 	 protected $routeMiddleware = [
 	 	.................. 
-	 	'jwt.verify' => \App\Http\Middleware\JwtMiddleware::class,
+	 	'bgr.verify' => \App\Http\Middleware\BageurMiddleware::class,
 	 ];
 ```
 3.config/cors.php  
@@ -64,7 +64,7 @@ Pilih Tag : Bageur-auth
 4.routes/api.php  
 ```php
 	Route::name('bageur.')->group(function () {
-	Route::group(['prefix' => 'bageur/v1','middleware' => 'jwt.verify'], function () {
+	Route::group(['prefix' => 'bageur/v1','middleware' => 'bgr.verify'], function () {
 		
 	});
 });

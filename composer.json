@@ -15,7 +15,7 @@
         "crazybooot/base64-validation": "^1.0",
         "intervention/image": "^2.5",
         "laravolt/avatar": "^4.0",
-        "bageur/company": "^0.5"
+        "bageur/company": "^0.6"
     },
     "autoload": {
         "psr-4": {
