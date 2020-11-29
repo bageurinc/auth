@@ -13,6 +13,37 @@ class IndonesiaLengkap extends Migration
      */
     public function up()
     {
+       Schema::create('bgr_indonesia_jenis', function (Blueprint $table) {
+            $table->id();
+            $table->string('nama');
+        });
+
+       Schema::create('bgr_indonesia_provinsi', function (Blueprint $table) {
+            $table->id();
+            $table->string('nama');
+        });
+
+       Schema::create('bgr_indonesia_kabupaten', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('id_prov');
+            $table->string('nama');
+            $table->foreignId('jenis_id');
+        });
+
+
+       Schema::create('bgr_indonesia_kecamatan', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('id_kab');
+            $table->string('nama');
+        });
+
+       Schema::create('bgr_indonesia_kelurahan', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('id_kec');
+            $table->string('nama');
+            $table->foreignId('jenis_id');
+        });
+
        \DB::unprepared(file_get_contents(__DIR__.'/indonesia.sql'));
     }
 
