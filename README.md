@@ -13,7 +13,8 @@ composer require bageur/auth
 ```bash
  php artisan vendor:publish --tag=bageur-auth --force
 ```
-Pilih Tag : Bageur-auth
+3.setup vendor ke 3
+bisa langsung baca [disni](https://github.com/laravolt/avatar)
 
 ## Usage
 1.config/auth.php  
@@ -69,7 +70,7 @@ Pilih Tag : Bageur-auth
 	});
 });
 ```
-4.config/database.php  
+5.config/database.php   
 ```php
 'connections' => [
 			.................. 
@@ -83,6 +84,18 @@ Pilih Tag : Bageur-auth
 				]) : [],
 			],
 		],
+```
+5. config/app.php
+
+```php
+'providers' => [
+	..................
+        Bageur\Auth\AuthServiceProvider::class,
+        Bageur\Company\CompanyServiceProvider::class
+    ],
+'aliases' => [
+		 'Bageur' => Bageur\Auth\Facades\BageurFacade::class
+],
 ```
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.

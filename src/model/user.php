@@ -77,6 +77,7 @@ class user extends Authenticatable implements JWTSubject
     }
     public function scopeDatatable($query,$request,$page=12)
     {
+
         $search       = ["name",'email','username'];
         $searchqry    = '';
         $searchqry = "(";
@@ -90,7 +91,6 @@ class user extends Authenticatable implements JWTSubject
                 $searchqry .= "OR lower($value) like '%".strtolower($request->search)."%'";
             }
         } 
-
         $searchqry .= ")";
         if(@$request->sort_by){
             if(@$request->sort_by != null){
