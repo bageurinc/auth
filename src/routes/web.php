@@ -12,6 +12,9 @@
 	});
 
 		Route::group(['prefix' => 'bageur/v1'], function () {
+			Route::get('indonesia/provinsi', 'bageur\auth\IndonesiaController@provinsi')->middleware('bgr.verify');
+			Route::get('indonesia/provinsi/{id}', 'bageur\auth\IndonesiaController@provinsi_detail')->middleware('bgr.verify');
+
 			Route::apiResource('menu', 'bageur\auth\MenuController')->middleware('bgr.verify');
 			Route::apiResource('user', 'bageur\auth\UserController')->middleware('bgr.verify');
 			Route::apiResource('level', 'bageur\auth\LevelController')->middleware('bgr.verify');
