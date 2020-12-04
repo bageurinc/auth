@@ -124,7 +124,7 @@ class MenuController extends Controller
             }
             $menu->save();
 
-          foreach (level_akses::groupBy('id_level')->get() as $key => $value) {
+          foreach (level_akses::select('id_level')->groupBy('id_level')->get() as $key => $value) {
                 $new                 = new level_akses;
                 $new->id_level       = $value->id_level;
                 if(!empty($request->sub_id)){
