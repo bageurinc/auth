@@ -10,13 +10,13 @@ class ind_provinsi extends Model
 
     public function kota()
     {
-        return $this->hasMany('Bageur\Auth\Model\ind_kota','id_prov','id_prov');
+        return $this->hasMany('Bageur\Auth\Model\ind_kota','id_prov','id');
     }
     public function scopeKondisi($query,$id = null)
     {
     	if(!empty($id)){
     		$query->with(['kota']);
-    		return $query->where('id_prov',$id)->first();
+    		return $query->where('id',$id)->first();
     	}else{
     		return $query->get();
     	}
