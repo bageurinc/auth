@@ -9,6 +9,9 @@
 		Route::delete('logout', 'bageur\auth\AuthController@logout')->middleware('bgr.verify');
 		Route::post('refresh', 'bageur\auth\AuthController@refresh')->middleware('bgr.verify');
         Route::post('me', 'bageur\auth\AuthController@me')->middleware('bgr.verify');
+
+        Route::post('deviceregister', 'bageur\auth\AuthController@device_add');
+
 	});
 
 		Route::group(['prefix' => 'bageur/v1'], function () {

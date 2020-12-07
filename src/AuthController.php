@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Bageur\Auth\model\user;
 use Bageur\Auth\model\bageur_akses;
+use Bageur\Auth\model\deviceregister;
 use Bageur\Company\model\company;
 use Illuminate\Support\Facades\Auth;
 use Tymon\JWTAuth\Exceptions\JWTException;
@@ -144,5 +145,27 @@ class AuthController extends Controller
             'perusahaan'    => $perusahaan,
             'expires_in'    => auth()->factory()->getTTL() * 60
         ]);
+    }
+
+    public function device_add(Request $request){
+        $rules    = [
+            'user_id'          => 'nullable|unique:\Bageur\Auth\model\deviceregister,id_user',
+            'fcmtoken'         => 'required|unique:\Bageur\Auth\model\deviceregister,token',
+        ];
+
+        $messages = [
+        ];
+
+        $attributes = [
+        ];
+        $validator = \Validator::make($request->all(), $rules,$messages,$attributes);
+        if (!$validator->fails()) {
+            $new            = new deviceregister;
+            $new->id_user   = @$request->user_id;  
+            $new->token     = @$request->fcmtoken;  
+            $new->topic     = @$request->topic;
+            $new->save();
+            return ['status' => true]; 
+        }
     }
 }
