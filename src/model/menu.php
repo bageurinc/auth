@@ -11,6 +11,11 @@ class menu extends Model
     public function sub_menu()
     {
          return $this->hasMany('Bageur\Auth\model\menu','sub_id')->with('action')->orderBy('urutan','asc');
+    }      
+
+    public function parent()
+    {
+         return $this->hasOne('Bageur\Auth\model\menu','id','sub_id');
     }  
 
     public function action()

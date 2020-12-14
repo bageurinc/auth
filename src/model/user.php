@@ -63,7 +63,7 @@ class user extends Authenticatable implements JWTSubject
      public function level()
     {
          return $this->hasOne('Bageur\Auth\model\level','id','id_level');
-    }  
+    }
 
     public function getAddonsDataAttribute() {
         return json_decode($this->addons);
@@ -90,7 +90,7 @@ class user extends Authenticatable implements JWTSubject
             }else{
                 $searchqry .= "OR lower($value) like '%".strtolower($request->search)."%'";
             }
-        } 
+        }
         $searchqry .= ")";
         if(@$request->sort_by){
             if(@$request->sort_by != null){
@@ -112,5 +112,5 @@ class user extends Authenticatable implements JWTSubject
         }
 
     }
-   
+
 }

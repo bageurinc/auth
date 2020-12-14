@@ -149,7 +149,6 @@ class AuthController extends Controller
 
     public function device_add(Request $request){
         $rules    = [
-            'user_id'          => 'nullable|unique:\Bageur\Auth\model\deviceregister,id_user',
             'fcmtoken'         => 'required|unique:\Bageur\Auth\model\deviceregister,token',
         ];
 

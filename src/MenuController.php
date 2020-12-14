@@ -65,7 +65,7 @@ class MenuController extends Controller
     }
     public function show($id)
     {
-       $menu         = menu::find($id);
+       $menu         = menu::with('parent')->find($id);
        return $menu;
     }
     public function showseo($seo_link)
