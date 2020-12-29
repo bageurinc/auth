@@ -7,7 +7,11 @@ class Bageur {
 		if($namafile == null){
 			return \Avatar::create($nama)->toBase64()->encoded;
 		}else{
-			return url($path.'/'.$namafile);
+			$addpath = null;
+			if(env('APP_ENV') != 'local'){
+				$addpath = 'storage/';
+			}
+			return url($addpath.$path.'/'.$namafile);
 		}
 	}
 	public function tglindo($date){
