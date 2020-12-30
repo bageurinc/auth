@@ -7,10 +7,7 @@ class Bageur {
 		if($namafile == null){
 			return \Avatar::create($nama)->toBase64()->encoded;
 		}else{
-			$addpath = null;
-			if(env('APP_ENV') != 'local'){
-				$addpath = 'storage/';
-			}
+			$addpath = 'storage/';
 			return url($addpath.$path.'/'.$namafile);
 		}
 	}
