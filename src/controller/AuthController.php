@@ -167,4 +167,55 @@ class AuthController extends Controller
             return ['status' => true]; 
         }
     }
+    
+    public function getuserinfo()
+    {
+        $db = user::where('id', Auth::user()->id)->first();
+        return $db;
+    }
+    public function edituser(Request $request)
+    {
+         $rules     = [
+                        'name'                  => 'required|min:3',
+                        'email'                 => 'required|unique:bgr_user,id,|email',
+                        'username'              => 'required|unique:bgr_user,id,',
+                        'userkode'              => 'required',
+                        'password'              => 'nullable|min:3|confirmed',
+                        'password_confirmation' => 'nullable',
+                      ];
+
+        $messages   = [];
+        $attributes = [];
+
+        $validator = Validator::make($request->all(), $rules,$messages,$attributes);
+        if ($validator->fails()) {
+            $errors = $validator->errors();
+            return response(['status' => false ,'error'    =>  $errors->all()], 200);
+        }else{
+            // $users                     = user::get('id');
+            // dd($users);
+            // $user                      = user::find($users);
+            $user                      = user::where('id', Auth::user()->id)->first();
+            $user->username            = $request->username;
+            $user->name                = $request->name;
+            $user->email               = $request->email;
+            if(!empty($request->file)){
+                $upload                           = avatarbase64($request->file,'admin');
+                $user->foto                      = $upload['up'];
+                $user->foto_path                 = $upload['path'];
+            }
+
+            if(!empty($request->file2)){
+                $upload                           = avatarbase64($request->file2,'photos');
+                $user->foto                      = $upload['up'];
+            }else{
+                $upload['up']                     = $request->digital_signature;
+            }
+            $user->addons              = json_encode(['userkode' => $request->userkode,'digital_signature' => @$upload['up']]);
+            $user->password            = Hash::make($request->password);
+            $user->save();
+            return response(['status' => true ,'text'    => 'has input'], 200);
+        }
+    }
+
 }
