@@ -49,8 +49,42 @@ class Bageur {
 	    $arr = ['up' => $namaBerkas , 'path' => $path];
 	    return $arr;
   }
-   public function provinsi($id = null){
-   		$provinsi = \Bageur\Auth\model\ind_provinsi::kondisi($id);
-   		return $provinsi;
-   }
+
+public function base64_v2($data){
+	    $file        = explode(";base64,", $data['base64']);
+	    $extension   = explode(":", $file[0]);
+	    $extension   = explode("/", $extension[1])[1];
+		$path        = $data['folder'];
+		 \Storage::makeDirectory('public/'.$path);
+	    $file_base64 = base64_decode($file[1]);
+	    $namaBerkas  = date('ymdhis').'-'.$data['name'];
+	    $file 		 = storage_path('app/public/'.$path.'/'.$namaBerkas);
+	    file_put_contents($file, $file_base64);
+	    return $namaBerkas;
+  }
+    public function g_gambar($id,$folder,$cover=false,$type="group"){
+
+		if($type == "group"){
+			   $upload = \Bageur\Auth\model\upload::query();
+			   $upload->where('folder',$folder);
+			   $upload->where($type,$id);
+	  		   $upload->orderBy('id','asc');
+			   if($type == 'group'){
+				   if($cover == true){
+					$data =  $upload->first();
+					return @$data->info;
+				   }else{
+					 $data = $upload->get();
+					 $new  = [];
+					 foreach ($data as $key => $value) {
+						$new[]['image'] = $value->info['base64']; 
+					 }
+					 return $new;
+				   }
+			   }else{
+					return $upload->first();
+			   }
+		}
+
+	}
 }

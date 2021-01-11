@@ -13,13 +13,13 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->make('Bageur\Auth\PasswordResetController');
-        $this->app->make('Bageur\Auth\UserController');
-        $this->app->make('Bageur\Auth\AuthController');
-        $this->app->make('Bageur\Auth\MenuController');
-        $this->app->make('Bageur\Auth\LevelController');
-        $this->app->make('Bageur\Auth\MenuActionController');
-        $this->app->make('Bageur\Auth\IndonesiaController');
+        $this->app->make('Bageur\Auth\Controller\PasswordResetController');
+        $this->app->make('Bageur\Auth\Controller\UserController');
+        $this->app->make('Bageur\Auth\Controller\AuthController');
+        $this->app->make('Bageur\Auth\Controller\MenuController');
+        $this->app->make('Bageur\Auth\Controller\LevelController');
+        $this->app->make('Bageur\Auth\Controller\MenuActionController');
+        $this->app->make('Bageur\Auth\Controller\PerkakasController');
        
        $this->app->bind('bageur',function(){
             return new Facades\Bageur();
