@@ -9,6 +9,8 @@ use Bageur\Auth\model\deviceregister;
 use Bageur\Company\model\company;
 use Illuminate\Support\Facades\Auth;
 use Tymon\JWTAuth\Exceptions\JWTException;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 class AuthController extends Controller
 {
     /**
@@ -187,7 +189,7 @@ class AuthController extends Controller
         $messages   = [];
         $attributes = [];
 
-        $validator = \Validator::make($request->all(), $rules,$messages,$attributes);
+        $validator = Validator::make($request->all(), $rules,$messages,$attributes);
         if ($validator->fails()) {
             $errors = $validator->errors();
             return response(['status' => false ,'error'    =>  $errors->all()], 200);
@@ -212,7 +214,7 @@ class AuthController extends Controller
                 $upload['up']                     = $request->digital_signature;
             }
             $user->addons              = json_encode(['userkode' => $request->userkode,'digital_signature' => @$upload['up']]);
-            $user->password            = \Hash::make($request->password);
+            $user->password            = Hash::make($request->password);
             $user->save();
             return response(['status' => true ,'text'    => 'has input'], 200);
         }
