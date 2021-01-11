@@ -7,7 +7,8 @@ class Bageur {
 		if($namafile == null){
 			return \Avatar::create($nama)->toBase64()->encoded;
 		}else{
-			return url('bageur.id/'.$path.'/'.$namafile);
+			$addpath = 'storage/';
+			return url($addpath.$path.'/'.$namafile);
 		}
 	}
 	public function tglindo($date){
