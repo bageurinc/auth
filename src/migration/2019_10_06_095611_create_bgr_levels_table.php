@@ -5,7 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 use Bageur\Auth\model\level;
 
-class CreateLevelsTable extends Migration
+class CreateBgrLevelsTable extends Migration
 {
     /**
      * Run the migrations.

@@ -5,7 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 use Bageur\Auth\model\action;
 
-class CreateActionTable extends Migration
+class CreateBgrActionTable extends Migration
 {
     /**
      * Run the migrations.

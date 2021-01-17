@@ -5,7 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 use Bageur\Auth\model\level_akses;
 
-class CreateLevelAksesTable extends Migration
+class CreateBgrLevelAksesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -18,7 +18,7 @@ class CreateLevelAksesTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('id_level')->index();
             $table->unsignedBigInteger('id_menu')->index();
-            $table->bigInteger('sub_id')->index()->nullable();
+            $table->unsignedBigInteger('sub_id')->index()->nullable();
             $table->boolean('granted')->default(false);
             $table->timestamps();
             

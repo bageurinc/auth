@@ -17,11 +17,11 @@ class Bageur {
     }
 
     public function blob($data,$loc,$id_user = null) {
-    	$path       = 'bageur.id/'.$loc;
+    	$path       = $loc;
 	    $namaBerkas = rand(000,999).'-'.$data->getClientOriginalName();
 	    if($id_user != null){
 	        $user   = \Bageur\Auth\model\user::findOrFail($id_user);
-	        $path   = 'bageur.id/'.$user->username.'/'.$loc;
+	        $path   = $user->username.'/'.$loc;
 	        \Storage::makeDirectory('public/'.$path);
 	    }else{
 	        \Storage::makeDirectory('public/'.$path);

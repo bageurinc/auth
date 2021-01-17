@@ -9,7 +9,7 @@ use Bageur\Auth\model\action;
 use Bageur\Auth\model\level_akses;
 use Bageur\Auth\model\level_akses_action;
 
-class seed extends Migration
+class BgrSeed extends Migration
 {
     /**
      * Run the migrations.

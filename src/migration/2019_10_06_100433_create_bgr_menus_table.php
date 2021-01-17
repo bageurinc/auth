@@ -5,7 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 use Bageur\Auth\model\menu;
 
-class CreateMenusTable extends Migration
+class CreateBgrMenusTable extends Migration
 {
     /**
      * Run the migrations.

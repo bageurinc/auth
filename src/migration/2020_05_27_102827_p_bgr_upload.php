@@ -5,7 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Bageur\Auth\model\user;
 
-class PUpload extends Migration
+class PBgrUpload extends Migration
 {
     /**
      * Run the migrations.

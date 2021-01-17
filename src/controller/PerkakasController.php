@@ -21,6 +21,19 @@ class perkakasController extends Controller
 
         return ['status' => true];
     }
+
+    public function p_upload_blob(Request $request)
+    {
+        // base64
+        $u              = new \Bageur\Auth\model\upload;
+        $u->uuid        = (string) Str::uuid();
+        $u->folder      = $request->folder;
+        $u->type        = $request->file('image')->getClientMimeType();
+        $u->file        = \Bageur::blob($request->file('image'),$request->folder)['up'];
+        $u->save();
+        
+        return ['status' => true,'data' => $u];
+    }
     public function getgroup_p_upload($folder,$id)
     {
         $u              = \Bageur\Auth\model\upload::where('group',$id)->where('folder',$folder)->get();

@@ -16,8 +16,10 @@
 			Route::post('p-upload', 'bageur\auth\controller\PerkakasController@p_upload');
 			Route::delete('p-upload/{id}', 'bageur\auth\controller\PerkakasController@delete_p_upload');
 
+			Route::post('p-upload-blob', 'bageur\auth\controller\PerkakasController@p_upload_blob');
+			
 			Route::apiResource('menu', 'bageur\auth\controller\MenuController')->middleware('bgr.verify');
-			Route::apiResource('user', 'bageur\auth\controller\UserController')->middleware('bgr.verify');
+			Route::apiResource('admin', 'bageur\auth\controller\UserController')->middleware('bgr.verify');
 			Route::apiResource('level', 'bageur\auth\controller\LevelController')->middleware('bgr.verify');
 			Route::apiResource('menu.action', 'bageur\auth\controller\MenuActionController')->middleware('bgr.verify');
 			Route::get('bageur-akses/{id}', 'bageur\auth\controller\LevelController@bageur_akses')->middleware('bgr.verify');

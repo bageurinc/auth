@@ -5,7 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 use Bageur\Auth\model\level_akses_action;
 
-class CreateLevelAksesActionTable extends Migration
+class CreateBgrLevelAksesActionTable extends Migration
 {
     /**
      * Run the migrations.
