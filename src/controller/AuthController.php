@@ -9,6 +9,8 @@ use Bageur\Auth\model\deviceregister;
 use Bageur\Company\model\company;
 use Illuminate\Support\Facades\Auth;
 use Tymon\JWTAuth\Exceptions\JWTException;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 class AuthController extends Controller
 {
     /**

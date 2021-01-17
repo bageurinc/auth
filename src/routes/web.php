@@ -31,6 +31,8 @@
 			Route::get('global/menu', 'bageur\auth\controller\MenuController@menufull');
 			Route::get('global/notif', 'bageur\auth\controller\MenuController@notif');
 			Route::get('global/notif/{id}', 'bageur\auth\controller\MenuController@notif_detail');
+			Route::get('getuserinfo/', 'bageur\auth\controller\AuthController@getuserinfo')->middleware('bgr.verify');
+    		Route::put('edit-user/', 'bageur\auth\controller\AuthController@edituser')->middleware('bgr.verify');
 		});
 
 	});
