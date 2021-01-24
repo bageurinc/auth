@@ -37,7 +37,6 @@ class Bageur {
 	    $extension   = explode("/", $extension[1])[1];
 	    $path        = $loc;
 	    $file_base64 = base64_decode($file[1]);
-	    $namaBerkas = $prefix.'-'.date('ymdhis').'.'.$extension;
 	    if($id_user != null){
 	        $user   = \App\User::findOrFail($id_user);
 	        $path   = $user->username.'/'.$loc;
@@ -52,7 +51,8 @@ class Bageur {
 	    if($extension == 'vnd.openxmlformats-officedocument.wordprocessingml.document'){
 	    	$extension = 'docx';
 	    }
-
+	    
+	    $namaBerkas = $prefix.'-'.date('ymdhis').'.'.$extension;
 	    $file = storage_path('app/public/'.$path.'/'.$namaBerkas);
 	    file_put_contents($file, $file_base64);
 	    $arr = ['up' => $namaBerkas , 'path' => $path];
