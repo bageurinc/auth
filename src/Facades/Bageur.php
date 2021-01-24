@@ -43,8 +43,16 @@ class Bageur {
 	        $path   = $user->username.'/'.$loc;
 	        \Storage::makeDirectory('public/'.$path);
 	    }else{
-		        \Storage::makeDirectory('public/'.$path);
-		}
+		\Storage::makeDirectory('public/'.$path);
+	    }
+	    
+	    if($extension == 'msword'){
+	    	$extension = 'doc';
+	    }
+	    if($extension == 'vnd.openxmlformats-officedocument.wordprocessingml.document'){
+	    	$extension = 'docx';
+	    }
+
 	    $file = storage_path('app/public/'.$path.'/'.$namaBerkas);
 	    file_put_contents($file, $file_base64);
 	    $arr = ['up' => $namaBerkas , 'path' => $path];
