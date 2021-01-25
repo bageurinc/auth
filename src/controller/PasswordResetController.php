@@ -1,5 +1,4 @@
 <?php
-
 namespace Bageur\Auth\Controller;
 // namespace App\Http\Controllers;
 
