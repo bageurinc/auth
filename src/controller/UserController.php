@@ -36,7 +36,7 @@ class UserController extends Controller
             return response(['status' => false ,'error'    =>  $errors->all()], 200);
         }else{
             $user                   = new user;
-            $user->id_level         = 1;
+            $user->id_level         = $request->id_level;
             $user->username         = $request->username;
             $user->name             = $request->name;
             $user->email            = $request->email;
@@ -87,6 +87,7 @@ class UserController extends Controller
             return response(['status' => false ,'error'    =>  $errors->all()], 200);
         }else{
             $user                   = user::superadmin()->findOrFail($id);
+            $user->id_level         = $request->id_level;
             $user->name             = $request->name;
             $user->email            = $request->email;
              if(!empty($request->file)){
