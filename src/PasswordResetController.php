@@ -48,7 +48,7 @@ class PasswordResetController extends Controller
         //     'text' => 'We have e-mailed your password reset link!'
         // ]);
         $rules    = [
-            'email'         => ['required','email', new \Bageur\Auth\Rules\checkUserByemail]
+            'email'         => ['required','email', new \Bageur\Auth\rules\checkUserByemail]
         ];
 
         $messages = [
@@ -146,7 +146,7 @@ class PasswordResetController extends Controller
         //     'text' => 'Password telah dirubah'
         // ]);
         $rules    = [
-            'token'                     => ['required', new \Bageur\Auth\Rules\checkForgetToken],
+            'token'                     => ['required', new \Bageur\Auth\rules\checkForgetToken],
             'password'                  => 'required|confirmed|min:6',
             'password_confirmation'     => 'required|min:6',
         ];
