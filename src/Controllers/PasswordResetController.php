@@ -1,5 +1,5 @@
 <?php
-namespace Bageur\Auth\Controller;
+namespace Bageur\Auth\Controllers;
 // namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
@@ -8,8 +8,8 @@ use Carbon\Carbon;
 use Illuminate\Support\Str;
 use Bageur\Auth\Model\password_reset;
 use Bageur\Auth\Model\user;
-use Bageur\Auth\notifications\PasswordResetRequest;
-use Bageur\Auth\notifications\PasswordResetSuccess;
+use Bageur\Auth\Notifications\PasswordResetRequest;
+use Bageur\Auth\Notifications\PasswordResetSuccess;
 
 class PasswordResetController extends Controller
 {
@@ -47,7 +47,7 @@ class PasswordResetController extends Controller
         //     'text' => 'We have e-mailed your password reset link!'
         // ]);
         $rules    = [
-            'email'         => ['required','email', new \Bageur\Auth\rules\checkUserByemail]
+            'email'         => ['required','email', new \Bageur\Auth\Rules\checkUserByemail]
         ];
 
         $messages = [
@@ -145,7 +145,7 @@ class PasswordResetController extends Controller
         //     'text' => 'Password telah dirubah'
         // ]);
         $rules    = [
-            'token'                     => ['required', new \Bageur\Auth\rules\checkForgetToken],
+            'token'                     => ['required', new \Bageur\Auth\Rules\checkForgetToken],
             'password'                  => 'required|confirmed|min:6',
             'password_confirmation'     => 'required|min:6',
         ];

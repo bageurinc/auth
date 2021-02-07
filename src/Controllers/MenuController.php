@@ -1,6 +1,6 @@
 <?php
 
-namespace Bageur\Auth\Controller;
+namespace Bageur\Auth\Controllers;
 
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;

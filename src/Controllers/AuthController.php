@@ -1,5 +1,5 @@
 <?php
-namespace Bageur\Auth\Controller;
+namespace Bageur\Auth\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
