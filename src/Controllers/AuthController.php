@@ -3,10 +3,10 @@ namespace Bageur\Auth\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Bageur\Auth\model\user;
-use Bageur\Auth\model\bageur_akses;
-use Bageur\Auth\model\deviceregister;
-use Bageur\Company\model\company;
+use Bageur\Auth\Model\user;
+use Bageur\Auth\Model\bageur_akses;
+use Bageur\Auth\Model\deviceregister;
+use Bageur\Company\Model\company;
 use Illuminate\Support\Facades\Auth;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Illuminate\Support\Facades\Hash;
@@ -172,9 +172,11 @@ class AuthController extends Controller
     
     public function getuserinfo()
     {
-        $db = user::where('id', Auth::user()->id)->first();
-        return $db;
+        // $db = user::where('id', Auth::user()->id)->first();
+         return user::superadmin()->findOrFail(Auth::user()->id);
+        // return $db;
     }
+
     public function edituser(Request $request)
     {
          $rules     = [
