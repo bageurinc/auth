@@ -11,7 +11,7 @@ use Bageur\Auth\Processors\Helper;
 class user extends Authenticatable implements JWTSubject
 {
     protected $table   = 'bgr_user';
-    protected $appends = ['avatar','addons_data'];
+    protected $appends = ['avatar','addons_data','digital_signature_url','digital_signature_materai_url'];
     use Notifiable;
 
     /**
@@ -59,8 +59,17 @@ class user extends Authenticatable implements JWTSubject
     public function getAvatarAttribute() {
         return \Bageur::avatar($this->name);
     }
-
-     public function level()
+    
+    public function getDigitalSignatureUrlAttribute() {
+        return \Bageur::avatar(null,@$this->addons_data->digital_signature,'photos');
+    }
+    
+    
+    public function getDigitalSignatureMateraiUrlAttribute() {
+        return \Bageur::avatar(null,@$this->addons_data->digital_signature_materai,'photos');
+    }
+    
+    public function level()
     {
          return $this->hasOne('Bageur\Auth\model\level','id','id_level');
     }

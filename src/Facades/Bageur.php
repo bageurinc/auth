@@ -5,7 +5,11 @@ class Bageur {
 
 	public function avatar($nama,$namafile=null,$path=null){
 		if($namafile == null){
-			return \Avatar::create($nama)->toBase64()->encoded;
+			if($nama){
+				return \Avatar::create($nama)->toBase64()->encoded;
+			}else{
+				return null;
+			}
 		}else{
 			$addpath = 'storage/';
 			return url($addpath.$path.'/'.$namafile);

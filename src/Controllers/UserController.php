@@ -35,19 +35,34 @@ class UserController extends Controller
             $errors = $validator->errors();
             return response(['status' => false ,'error'    =>  $errors->all()], 200);
         }else{
-            $user                   = new user;
-            $user->id_level         = $request->id_level;
-            $user->username         = $request->username;
-            $user->name             = $request->name;
-            $user->email            = $request->email;
-             if(!empty($request->file)){
-                $upload                          = Helper::avatarbase64($request->file,'admin');
-                $user->foto                      = $upload['up']; 
-                $user->foto_path                 = $upload['path']; 
-            }     
-            $user->password         = Hash::make($request->password);
-            $user->save();
-            return response(['status' => true ,'text'    => 'has input'], 200); 
+            $admin              		= new user;
+            $admin->id_level	        = $request->id_level;
+            $admin->username	        = $request->username;
+            $admin->name                = $request->name;
+            $admin->email               = $request->email;
+            if(!empty($request->file)){
+                $upload                           = \Bageur::base64($request->file,'admin');
+                $admin->foto                      = $upload['up'];
+                $admin->foto_path                 = $upload['path'];
+            }
+
+            if(!empty($request->file2)){
+                $ds                               = \Bageur::base64($request->file2,'photos');
+                // $admin->foto                      = $upload['up'];
+            }
+
+            if(!empty($request->file3)){
+                $dsm                              = \Bageur::base64($request->file3,'photos');
+                // $admin->foto                      = $upload['up'];
+            }
+            
+            $admin->addons                      = json_encode(['userkode'                  => @$request->userkode,
+                                                               'digital_signature'         => @$ds['up'],
+                                                               'digital_signature_materai' => @$dsm['up']]);
+            $admin->password                    = Hash::make($request->password);
+            $admin->save();
+
+            return response(['status' => true ,'text'    => 'has input'], 200);
         }
     }
 
@@ -86,20 +101,40 @@ class UserController extends Controller
             $errors = $validator->errors();
             return response(['status' => false ,'error'    =>  $errors->all()], 200);
         }else{
-            $user                   = user::superadmin()->findOrFail($id);
-            $user->id_level         = $request->id_level;
-            $user->name             = $request->name;
-            $user->email            = $request->email;
-             if(!empty($request->file)){
-                $upload                          = Helper::avatarbase64($request->file,'admin');
-                $user->foto                      = $upload['up']; 
-                $user->foto_path                 = $upload['path']; 
-            }     
-            if(!empty($request->password)){
-                $user->password         = Hash::make($request->password);
+            $admin              		= user::superadmin()->findOrFail($id);
+            $admin->id_level	        = $request->id_level;
+            $admin->username	        = $request->username;
+            $admin->name                = $request->name;
+            $admin->email               = $request->email;
+            if(!empty($request->file)){
+                $upload                           = \Bageur::base64($request->file,'admin');
+                $admin->foto                      = $upload['up'];
+                $admin->foto_path                 = $upload['path'];
             }
-            $user->save();
-            return response(['status' => true ,'text'    => 'has input'], 200); 
+            $dsup = null;
+            if(!empty($request->file2)){
+                $ds                               = \Bageur::base64($request->file2,'photos');
+                $dsup                             = @$ds['up'];
+                // $admin->foto                      = $upload['up'];
+            }else{
+                $dsup                             = @$admin->addons_data->digital_signature;
+            }
+            $dsmup = null;
+            if(!empty($request->file3)){
+                $dsm                             = \Bageur::base64($request->file3,'photos');
+                $dsmup                           = @$dsm['up'];
+                // $admin->foto                      = $upload['up'];
+            }else{
+                $dsmup                           = @$admin->addons_data->digital_signature_materai;
+            }
+            $admin->addons              = json_encode(['userkode'                  => @$request->userkode,
+                                                       'digital_signature'         => @$dsup,
+                                                       'digital_signature_materai' => @$dsmup]);
+
+            $admin->password            = Hash::make($request->password);
+            $admin->save();
+            return response(['status' => true ,'text'    => 'has input'], 200);
+
         }
     }
 
