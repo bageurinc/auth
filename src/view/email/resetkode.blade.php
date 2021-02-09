@@ -84,7 +84,7 @@ a[x-apple-data-detectors] {
                   <td valign="top" align="center" style="padding:0;Margin:0;width:570px"> 
                    <table width="100%" cellspacing="0" cellpadding="0" role="presentation" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px"> 
                      <tr style="border-collapse:collapse"> 
-                      <td class="es-m-p0l" align="center" style="padding:0;Margin:0"><a href="#" target="_blank" style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:verdana, geneva, sans-serif;font-size:14px;text-decoration:underline;color:#1376C8"><img src="{{ Bageur\Company\model\company::find(1)->avatar }}" alt="LawServices logo" title="LawServices logo" width="183" style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic"></a></td> 
+                      <td class="es-m-p0l" align="center" style="padding:0;Margin:0"><a href="#" target="_blank" style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:verdana, geneva, sans-serif;font-size:14px;text-decoration:underline;color:#1376C8"><img src="{{ Bageur\Company\Model\company::find(1)->avatar }}" alt="LawServices logo" title="LawServices logo" width="183" style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic"></a></td> 
                      </tr> 
                    </table></td> 
                  </tr> 
@@ -180,17 +180,17 @@ a[x-apple-data-detectors] {
                       <td align="center" style="padding:0;Margin:0;font-size:0"> 
                        <table cellpadding="0" cellspacing="0" class="es-table-not-adapt es-social" role="presentation" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px"> 
                          <tr style="border-collapse:collapse"> 
-                          @if(Bageur\Company\model\company::find(1)->fb)
-                          <td align="center" valign="top" style="padding:0;Margin:0;padding-right:10px"><a href="{{Bageur\Company\model\company::find(1)->fb}}" target="_blank"><img title="Facebook" src="{{ url('vendor/bageur/email/facebook-circle') }}-colored.png" alt="Fb" width="32" style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic"></a></td> 
+                          @if(Bageur\Company\Model\company::find(1)->fb)
+                          <td align="center" valign="top" style="padding:0;Margin:0;padding-right:10px"><a href="{{Bageur\Company\Model\company::find(1)->fb}}" target="_blank"><img title="Facebook" src="{{ url('vendor/bageur/email/facebook-circle') }}-colored.png" alt="Fb" width="32" style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic"></a></td> 
                           @endif
-                          @if(Bageur\Company\model\company::find(1)->tw)
-                          <td align="center" valign="top" style="padding:0;Margin:0;padding-right:10px"><a href="{{Bageur\Company\model\company::find(1)->tw}}" target="_blank"><img title="Twitter" src="{{ url('vendor/bageur/email/twitter-circle') }}-colored.png" alt="Tw" width="32" style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic"></a></td> 
+                          @if(Bageur\Company\Model\company::find(1)->tw)
+                          <td align="center" valign="top" style="padding:0;Margin:0;padding-right:10px"><a href="{{Bageur\Company\Model\company::find(1)->tw}}" target="_blank"><img title="Twitter" src="{{ url('vendor/bageur/email/twitter-circle') }}-colored.png" alt="Tw" width="32" style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic"></a></td> 
                           @endif
-                          @if(Bageur\Company\model\company::find(1)->ig)
-                          <td align="center" valign="top" style="padding:0;Margin:0;padding-right:10px"><a href="{{Bageur\Company\model\company::find(1)->ig}}" target="_blank"><img title="Instagram" src="{{ url('vendor/bageur/email/instagram-circle') }}-colored.png" alt="Inst" width="32" style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic"></a></td> 
+                          @if(Bageur\Company\Model\company::find(1)->ig)
+                          <td align="center" valign="top" style="padding:0;Margin:0;padding-right:10px"><a href="{{Bageur\Company\Model\company::find(1)->ig}}" target="_blank"><img title="Instagram" src="{{ url('vendor/bageur/email/instagram-circle') }}-colored.png" alt="Inst" width="32" style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic"></a></td> 
                           @endif
-                          @if(Bageur\Company\model\company::find(1)->yt)
-                          <td align="center" valign="top" style="padding:0;Margin:0"><a href="{{Bageur\Company\model\company::find(1)->yt}}" target="_blank"><img title="Youtube" src="{{ url('vendor/bageur/email/youtube-circle') }}-colored.png" alt="Yt" width="32" style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic"></a></td> 
+                          @if(Bageur\Company\Model\company::find(1)->yt)
+                          <td align="center" valign="top" style="padding:0;Margin:0"><a href="{{Bageur\Company\Model\company::find(1)->yt}}" target="_blank"><img title="Youtube" src="{{ url('vendor/bageur/email/youtube-circle') }}-colored.png" alt="Yt" width="32" style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic"></a></td> 
                           @endif
                          </tr> 
                        </table></td> 
@@ -204,7 +204,7 @@ a[x-apple-data-detectors] {
                        </table></td> 
                      </tr> 
                      <tr style="border-collapse:collapse"> 
-                      <td align="center" style="padding:0;Margin:0;padding-top:5px;padding-bottom:5px"><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-size:14px;font-family:verdana, geneva, sans-serif;line-height:21px;color:#FFFFFF">{{ Bageur\Company\model\company::find(1)->nohp }}</p><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-size:14px;font-family:verdana, geneva, sans-serif;line-height:21px;color:#FFFFFF">{{ Bageur\Company\model\company::find(1)->email }}</p><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-size:14px;font-family:verdana, geneva, sans-serif;line-height:21px;color:#FFFFFF">{!! nl2br(Bageur\Company\model\company::find(1)->alamat) !!}</p></td> 
+                      <td align="center" style="padding:0;Margin:0;padding-top:5px;padding-bottom:5px"><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-size:14px;font-family:verdana, geneva, sans-serif;line-height:21px;color:#FFFFFF">{{ Bageur\Company\Model\company::find(1)->nohp }}</p><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-size:14px;font-family:verdana, geneva, sans-serif;line-height:21px;color:#FFFFFF">{{ Bageur\Company\Model\company::find(1)->email }}</p><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-size:14px;font-family:verdana, geneva, sans-serif;line-height:21px;color:#FFFFFF">{!! nl2br(Bageur\Company\Model\company::find(1)->alamat) !!}</p></td> 
                      </tr> 
                      <tr style="border-collapse:collapse"> 
                       <td align="center" style="padding:0;Margin:0"><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-size:12px;font-family:verdana, geneva, sans-serif;line-height:18px;color:#FFFFFF">Bageur.inc © {{date('Y')}}</p></td> 
