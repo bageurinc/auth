@@ -5,7 +5,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
-use Bageur\Auth\model\user;
+use Bageur\Auth\Model\user;
 use Bageur\Auth\Processors\Helper;
 use Validator;
 class UserController extends Controller

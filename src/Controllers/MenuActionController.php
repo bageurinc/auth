@@ -5,9 +5,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
-use Bageur\Auth\model\action;
-use Bageur\Auth\model\level_akses;
-use Bageur\Auth\model\level_akses_action;
+use Bageur\Auth\Model\action;
+use Bageur\Auth\Model\level_akses;
+use Bageur\Auth\Model\level_akses_action;
 class MenuActionController extends Controller
 {
 

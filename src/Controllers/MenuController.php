@@ -5,10 +5,10 @@ namespace Bageur\Auth\Controllers;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Bageur\Auth\model\level;
-use Bageur\Auth\model\menu;
-use Bageur\Auth\model\bageur_akses;
-use Bageur\Auth\model\level_akses;
+use Bageur\Auth\Model\level;
+use Bageur\Auth\Model\menu;
+use Bageur\Auth\Model\bageur_akses;
+use Bageur\Auth\Model\level_akses;
 use Auth,Validator,DB;
 
 class MenuController extends Controller

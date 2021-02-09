@@ -5,11 +5,11 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
-use Bageur\Auth\model\menu;
-use Bageur\Auth\model\level;
-use Bageur\Auth\model\level_akses;
-use Bageur\Auth\model\level_akses_action;
-use Bageur\Auth\model\bageur_akses;
+use Bageur\Auth\Model\menu;
+use Bageur\Auth\Model\level;
+use Bageur\Auth\Model\level_akses;
+use Bageur\Auth\Model\level_akses_action;
+use Bageur\Auth\Model\bageur_akses;
 class LevelController extends Controller
 {
 

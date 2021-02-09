@@ -71,7 +71,7 @@ class user extends Authenticatable implements JWTSubject
     
     public function level()
     {
-         return $this->hasOne('Bageur\Auth\model\level','id','id_level');
+         return $this->hasOne('Bageur\Auth\Model\level','id','id_level');
     }
 
     public function getAddonsDataAttribute() {

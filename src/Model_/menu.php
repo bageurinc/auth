@@ -10,17 +10,17 @@ class menu extends Model
     protected $appends  = ['avatar']; 
     public function sub_menu()
     {
-         return $this->hasMany('Bageur\Auth\model\menu','sub_id')->with('action')->orderBy('urutan','asc');
+         return $this->hasMany('Bageur\Auth\Model\menu','sub_id')->with('action')->orderBy('urutan','asc');
     }      
 
     public function parent()
     {
-         return $this->hasOne('Bageur\Auth\model\menu','id','sub_id');
+         return $this->hasOne('Bageur\Auth\Model\menu','id','sub_id');
     }  
 
     public function action()
     {
-         return $this->hasMany('Bageur\Auth\model\action','menu_id');
+         return $this->hasMany('Bageur\Auth\Model\action','menu_id');
     }  
 
     public function getAvatarAttribute() {
