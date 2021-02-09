@@ -151,7 +151,7 @@ class AuthController extends Controller
 
     public function device_add(Request $request){
         $rules    = [
-            'fcmtoken'         => 'required|unique:\Bageur\Auth\model\deviceregister,token',
+            'fcmtoken'         => 'required|unique:\Bageur\Auth\Model\deviceregister,token',
         ];
 
         $messages = [

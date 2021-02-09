@@ -11,7 +11,7 @@ class perkakasController extends Controller
     public function p_upload(Request $request)
     {
         // base64
-        $u              = new \Bageur\Auth\model\upload;
+        $u              = new \Bageur\Auth\Model\upload;
         $u->uuid        = $request->uuid;
         $u->group       = $request->group;
         $u->folder      = $request->info['folder'];
@@ -25,7 +25,7 @@ class perkakasController extends Controller
     public function p_upload_blob(Request $request)
     {
         // base64
-        $u              = new \Bageur\Auth\model\upload;
+        $u              = new \Bageur\Auth\Model\upload;
         $u->uuid        = (string) Str::uuid();
         $u->folder      = $request->folder;
         $u->type        = $request->file('image')->getClientMimeType();
@@ -36,14 +36,14 @@ class perkakasController extends Controller
     }
     public function getgroup_p_upload($folder,$id)
     {
-        $u              = \Bageur\Auth\model\upload::where('group',$id)->where('folder',$folder)->get();
+        $u              = \Bageur\Auth\Model\upload::where('group',$id)->where('folder',$folder)->get();
         return $u;
     }
     public function delete_p_upload($id)
     {
-        $u              = \Bageur\Auth\model\upload::where('uuid',$id)->first();
+        $u              = \Bageur\Auth\Model\upload::where('uuid',$id)->first();
         \Storage::disk('public')->delete($u->folder.'/'.$u->file);
-        $u              = \Bageur\Auth\model\upload::where('uuid',$id)->delete();
+        $u              = \Bageur\Auth\Model\upload::where('uuid',$id)->delete();
         return ['status' => true];
     }
 }

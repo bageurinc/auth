@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use Bageur\Auth\model\user;
+use Bageur\Auth\Model\user;
 
 class BgrRegisterdevice extends Migration
 {

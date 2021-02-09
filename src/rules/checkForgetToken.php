@@ -24,7 +24,7 @@ class checkForgetToken implements Rule
      */
     public function passes($attribute, $value)
     {
-        $cek = \Bageur\Auth\model\password_reset::where('token',$value)->count();
+        $cek = \Bageur\Auth\Model\password_reset::where('token',$value)->count();
         if($cek > 0){
             return  true;
         }else{

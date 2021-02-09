@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
-use Bageur\Auth\model\menu;
+use Bageur\Auth\Model\menu;
 
 class CreateBageurAksesTable extends Migration
 {

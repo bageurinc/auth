@@ -13,7 +13,7 @@ class bageur_akses extends Model
     ];
      public function sub_menu()
     {
-         return $this->hasMany('Bageur\Auth\model\bageur_akses','sub_id')->with('action')->orderBy('urutan','asc');
+         return $this->hasMany('Bageur\Auth\Model\bageur_akses','sub_id')->with('action')->orderBy('urutan','asc');
     }  
 
     public function getAvatarAttribute() {
@@ -22,7 +22,7 @@ class bageur_akses extends Model
     
     public function action()
     {
-         return $this->hasMany('Bageur\Auth\model\bageur_akses_action','id_level_akses');
+         return $this->hasMany('Bageur\Auth\Model\bageur_akses_action','id_level_akses');
     }  
 
     public function getIsGrantedAttribute()

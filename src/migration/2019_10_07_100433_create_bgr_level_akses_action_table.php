@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
-use Bageur\Auth\model\level_akses_action;
+use Bageur\Auth\Model\level_akses_action;
 
 class CreateBgrLevelAksesActionTable extends Migration
 {

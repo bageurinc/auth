@@ -78,7 +78,7 @@ public function base64_v2($data){
     public function g_gambar($id,$folder,$cover=false,$type="group"){
 
 		if($type == "group"){
-			   $upload = \Bageur\Auth\model\upload::query();
+			   $upload = \Bageur\Auth\Model\upload::query();
 			   $upload->where('folder',$folder);
 			   $upload->where($type,$id);
 	  		   $upload->orderBy('id','asc');

@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
-use Bageur\Auth\model\action;
+use Bageur\Auth\Model\action;
 
 class CreateBgrActionTable extends Migration
 {

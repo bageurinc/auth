@@ -35,7 +35,7 @@ bisa langsung baca [disni](https://github.com/laravolt/avatar)
 	        ..................     
 	        'bgr_users' => [
 	            'driver' => 'eloquent',
-	            'model' => Bageur\Auth\model\user::class,
+	            'model' => Bageur\Auth\Model\user::class,
 	        ],
 		],
 	'passwords' => [
