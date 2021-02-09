@@ -24,7 +24,7 @@ class Bageur {
     	$path       = $loc;
 	    $namaBerkas = rand(000,999).'-'.$data->getClientOriginalName();
 	    if($id_user != null){
-	        $user   = \Bageur\Auth\model\user::findOrFail($id_user);
+	        $user   = \Bageur\Auth\Model\user::findOrFail($id_user);
 	        $path   = $user->username.'/'.$loc;
 	        \Storage::makeDirectory('public/'.$path);
 	    }else{

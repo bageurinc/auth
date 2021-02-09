@@ -24,7 +24,7 @@ class checkUserByemail implements Rule
      */
     public function passes($attribute, $value)
     {
-        $cek = \Bageur\Auth\model\user::where('email',$value)->count();
+        $cek = \Bageur\Auth\Model\user::where('email',$value)->count();
         if($cek > 0){
             return  true;
         }else{

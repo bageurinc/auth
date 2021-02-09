@@ -3,11 +3,11 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use Bageur\Auth\model\user;
-use Bageur\Auth\model\menu;
-use Bageur\Auth\model\action;
-use Bageur\Auth\model\level_akses;
-use Bageur\Auth\model\level_akses_action;
+use Bageur\Auth\Model\user;
+use Bageur\Auth\Model\menu;
+use Bageur\Auth\Model\action;
+use Bageur\Auth\Model\level_akses;
+use Bageur\Auth\Model\level_akses_action;
 
 class BgrSeed extends Migration
 {
