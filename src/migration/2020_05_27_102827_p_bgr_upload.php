@@ -21,6 +21,7 @@ class PBgrUpload extends Migration
             $table->uuid('group')->nullable();
             $table->string('folder')->nullable();
             $table->string('file')->nullable();
+            $table->string('type')->nullable();
             $table->timestamps();
         });
     }
