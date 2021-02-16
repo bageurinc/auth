@@ -33,6 +33,7 @@ class AuthController extends Controller
         try {
             $input = $request->all();
             $fieldType = filter_var($request->email, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
+            // return $input;
             if(! $token = Auth::attempt([$fieldType => $input['email'], 'password' => $input['password']])){
                 return response()->json(['error' => 'invalid_credentials'], 400);
             }
@@ -196,29 +197,40 @@ class AuthController extends Controller
             $errors = $validator->errors();
             return response(['status' => false ,'error'    =>  $errors->all()], 200);
         }else{
-            // $users                     = user::get('id');
-            // dd($users);
-            // $user                      = user::find($users);
-            $user                      = user::where('id', Auth::user()->id)->first();
-            $user->username            = $request->username;
-            $user->name                = $request->name;
-            $user->email               = $request->email;
+            $admin                      = user::where('id', Auth::user()->id)->first();
+            $admin->username            = $request->username;
+            $admin->name                = $request->name;
+            $admin->email               = $request->email;
             if(!empty($request->file)){
-                $upload                           = avatarbase64($request->file,'admin');
-                $user->foto                      = $upload['up'];
-                $user->foto_path                 = $upload['path'];
+                $upload                           = \Bageur::base64($request->file,'admin');
+                $admin->foto                      = $upload['up'];
+                $admin->foto_path                 = $upload['path'];
             }
-
+            $dsup = null;
             if(!empty($request->file2)){
-                $upload                           = avatarbase64($request->file2,'photos');
-                $user->foto                      = $upload['up'];
+                $ds                               = \Bageur::base64($request->file2,'photos');
+                $dsup                             = @$ds['up'];
+                // $admin->foto                      = $upload['up'];
             }else{
-                $upload['up']                     = $request->digital_signature;
+                $dsup                             = @$admin->addons_data->digital_signature;
             }
-            $user->addons              = json_encode(['userkode' => $request->userkode,'digital_signature' => @$upload['up']]);
-            $user->password            = Hash::make($request->password);
-            $user->save();
-            return response(['status' => true ,'text'    => 'has input'], 200);
+            $dsmup = null;
+            if(!empty($request->file3)){
+                $dsm                             = \Bageur::base64($request->file3,'photos');
+                $dsmup                           = @$dsm['up'];
+                // $admin->foto                      = $upload['up'];
+            }else{
+                $dsmup                           = @$admin->addons_data->digital_signature_materai;
+            }
+            $admin->addons              = json_encode(['userkode'                  => @$request->userkode,
+                                                       'digital_signature'         => @$dsup,
+                                                       'digital_signature_materai' => @$dsmup]);
+            if(!empty($request->password)){
+                $admin->password            = Hash::make($request->password);
+            }
+            $admin->save();
+
+            return response(['status' => $admin ,'text'    => 'has input'], 200);
         }
     }
 

@@ -86,7 +86,7 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-         $rules     = [
+        $rules     = [
                         'name'                  => 'required|min:3',
                         'email'                 => 'required|unique:bgr_user,id,'.$id.'|email',
                         'password'              => 'nullable|min:3|confirmed',
@@ -130,8 +130,9 @@ class UserController extends Controller
             $admin->addons              = json_encode(['userkode'                  => @$request->userkode,
                                                        'digital_signature'         => @$dsup,
                                                        'digital_signature_materai' => @$dsmup]);
-
-            $admin->password            = Hash::make($request->password);
+            if(!empty($request->password)){
+                $admin->password            = Hash::make($request->password);
+            }
             $admin->save();
             return response(['status' => true ,'text'    => 'has input'], 200);
 

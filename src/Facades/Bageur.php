@@ -6,7 +6,7 @@ class Bageur {
 	public function avatar($nama,$namafile=null,$path=null){
 		if($namafile == null){
 			if($nama){
-				return \Avatar::create($nama)->toBase64()->encoded;
+				return @\Avatar::create(strtoupper($nama))->toBase64()->encoded;
 			}else{
 				return null;
 			}

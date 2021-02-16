@@ -14,7 +14,7 @@
         "tymon/jwt-auth": "^1.0.2",
         "crazybooot/base64-validation": "^1.0",
         "intervention/image": "^2.5",
-        "laravolt/avatar": "^4.0",
+        "laravolt/avatar": "4.1.0",
         "bageur/company": "^0.8"
     },
     "autoload": {
