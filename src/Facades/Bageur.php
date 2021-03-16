@@ -77,11 +77,15 @@ public function base64_v2($data){
   }
     public function g_gambar($id,$folder,$cover=false,$type="group"){
 
-		if($type == "group"){
 			   $upload = \Bageur\Auth\Model\upload::query();
 			   $upload->where('folder',$folder);
-			   $upload->where($type,$id);
-	  		   $upload->orderBy('id','asc');
+			   if($type == 'group'){
+			   	  $upload->where($type,$id);
+			   }else{
+				  $upload->where('uuid',$id);
+			   }
+			   $upload->orderBy('id','asc');
+			   
 			   if($type == 'group'){
 				   if($cover == true){
 					$data =  $upload->first();
@@ -95,9 +99,8 @@ public function base64_v2($data){
 					 return $new;
 				   }
 			   }else{
-					return $upload->first();
+					$data =  $upload->first();
+					return @$data->info;
 			   }
-		}
-
 	}
 }
