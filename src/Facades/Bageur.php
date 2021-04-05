@@ -15,6 +15,29 @@ class Bageur {
 			return url($addpath.$path.'/'.$namafile);
 		}
 	}
+
+	public function textarea($text){
+			$doc = new \DOMDocument();
+            $doc->loadHTML($text, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+            $searchNode = $doc->getElementsByTagName( "img" );
+            $img = [];
+            foreach( $searchNode as $searchNode )
+            {
+				$val['file'] = $searchNode->getAttribute('src');
+				$request = new \Illuminate\Http\Request($val);
+				$validator = \Validator::make($request->all(), [
+					'file' => 'required|base64image'
+				]);
+
+				if (!$validator->fails()) {
+					$upload = \Bageur::base64($request->file,'_artikel_konten');
+					$searchNode->setAttribute('src', \Bageur::avatar('xx',$upload['up'],$upload['path']));
+				}
+            }
+
+			return $doc->saveHTML();
+	}
+	
 	public function tglindo($date){
 		\Carbon\Carbon::setLocale('id');
 		return \Carbon\Carbon::parse($date)->format('d F Y');
