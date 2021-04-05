@@ -42,6 +42,11 @@ class Bageur {
 		\Carbon\Carbon::setLocale('id');
 		return \Carbon\Carbon::parse($date)->format('d F Y');
     }
+	
+	public function toText($text){
+         $d = new \Html2Text\Html2Text($text);
+         return $d->getText();
+    }
 
     public function blob($data,$loc,$id_user = null) {
     	$path       = $loc;
