@@ -16,7 +16,7 @@ class MenuController extends Controller
 
     public function __construct()
     {
-         // Auth::setDefaultDriver('bageur'); 
+         // Auth::setDefaultDriver('bageur');
     }
 
     public function menufull()
@@ -28,7 +28,7 @@ class MenuController extends Controller
         //     $q->append('avatar');
         //  });
         // return $json['fullmenu'];
-    }    
+    }
     public function notif()
     {
         $json = DB::table('notifications')->limit(10)->get();
@@ -84,21 +84,22 @@ class MenuController extends Controller
    public function ubahstatus(Request $request)
    {
         $edit         = menu::find($request->id);
-        $edit->status = $request->status; 
-        $edit->save();      
+        $edit->status = $request->status;
+        $edit->save();
 
-        return response(['status' => true], 200); 
+        return response(['status' => true], 200);
    }
-   
+
     public function store(Request $request)
     {
        $rules    = [
-                        'nama'    => 'required',
-                        'judul'   => 'required',
-                        'link'    => 'required',
-                        'files'    => 'nullable|mimes:svg,png|max:50',
-                    ];
+            'nama'    => 'required',
+            'judul'   => 'required',
+            'link'    => 'required',
+            'files'    => 'nullable|mimes:svg,png|max:50',
+                ];
         $messages = [
+            'required'    => ':attribute tidak boleh kosong',
         ];
 
         $attributes = [
@@ -122,6 +123,9 @@ class MenuController extends Controller
             if($request->file('files') != null){
                 $menu->icon     = \Bageur::blob($request->file('files'),'iconmenu')['up'];
             }
+            if($request->icon != null){
+                $menu->icon     = $request->icon;
+            }
             $menu->save();
 
           foreach (level_akses::select('id_level')->groupBy('id_level')->get() as $key => $value) {
@@ -136,7 +140,7 @@ class MenuController extends Controller
                 $new->save();
           }
 
-            return response(['status' => true ,'text'    => 'has input'], 200); 
+            return response(['status' => true ,'text'    => 'has input'], 200);
         }
     }
     public function update($id,Request $request)
@@ -148,8 +152,9 @@ class MenuController extends Controller
                     ];
         if($request->file('files') != null){
             $rules['files'] = 'mimes:svg,png|max:50';
-        }   
+        }
         $messages = [
+            'required'    => ':attribute tidak boleh kosong',
         ];
 
         $attributes = [
@@ -173,14 +178,17 @@ class MenuController extends Controller
             if($request->file('files') != null){
                 $menu->icon     = \Bageur::blob($request->file('files'),'iconmenu')['up'];
             }
+            if($request->icon != null){
+                $menu->icon     = $request->icon;
+            }
             $menu->save();
-            return response(['status' => true ,'text'    => 'has input'], 200); 
+            return response(['status' => true ,'text'    => 'has input'], 200);
         }
     }
     public function destroy($id)
     {
         $delete = menu::findOrFail($id);
         $delete->delete();
-        return response(['status' => true ,'text'    => 'deleted'], 200); 
+        return response(['status' => true ,'text'    => 'deleted'], 200);
     }
 }
