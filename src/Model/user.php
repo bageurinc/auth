@@ -57,18 +57,22 @@ class user extends Authenticatable implements JWTSubject
     }
 
     public function getAvatarAttribute() {
-        return \Bageur::avatar($this->name);
+         if(!empty($this->foto)){
+            return url('storage/'.@$this->foto_path.'/'.@$this->foto);
+        }else{
+            return \Bageur::avatar($this->name);
+        }
     }
-    
+
     public function getDigitalSignatureUrlAttribute() {
         return \Bageur::avatar(null,@$this->addons_data->digital_signature,'photos');
     }
-    
-    
+
+
     public function getDigitalSignatureMateraiUrlAttribute() {
         return \Bageur::avatar(null,@$this->addons_data->digital_signature_materai,'photos');
     }
-    
+
     public function level()
     {
          return $this->hasOne('Bageur\Auth\Model\level','id','id_level');
