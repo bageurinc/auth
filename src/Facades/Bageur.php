@@ -18,7 +18,7 @@ class Bageur {
 
 	public function textarea($text){
 			$doc = new \DOMDocument();
-            $doc->loadHTML($text, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+            $doc->loadHTML("<div>$text</div>", LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
             $searchNode = $doc->getElementsByTagName( "img" );
             $img = [];
             foreach( $searchNode as $searchNode )
