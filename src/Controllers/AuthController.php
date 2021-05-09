@@ -114,33 +114,43 @@ class AuthController extends Controller
          $listing[$rs->link] = $rs->granted == 0 ? false : true;
           foreach ($rs->action as $aa => $raa) {
             if($raa->nama == 'delete'){
-              $listing[$rs->link.'-delete'] = $raa->granted == 0 ? false : true;
+              $listing[strtolower($rs->link.'-delete')] = $raa->granted == 0 ? false : true;
             }else{
-              $listing[$raa->route] = $raa->granted == 0 ? false : true;
+              $listing[strtolower($raa->route)] = $raa->granted == 0 ? false : true;
             }
           }
         }
 
         foreach ($rd->action as $a => $ra) {
          if($ra->nama == 'delete'){
-              $listing[$rd->link.'-delete'] = $ra->granted == 0 ? false : true;
+              $listing[strtolower($rd->link.'-delete')] = $ra->granted == 0 ? false : true;
             }else{
-              $listing[$ra->route] = $ra->granted == 0 ? false : true;
+              $listing[strtolower($ra->route)] = $ra->granted == 0 ? false : true;
             }
         }
 
       }
 
-      $menu        = bageur_akses::with(['sub_menu' => function($query){
-                            $query->where('granted','1');
-                     }])->whereNull('sub_id')->where('granted','1')
-                        ->where('id_level',$id_level)
-                        ->orderBy('urutan','asc')
-                        ->get();
+      $menu['sidebar']        = bageur_akses::with(['sub_menu' => function($query){
+                                        $query->where('granted','1');
+                                }])->whereNull('sub_id')->where('granted','1')
+                                    ->where('id_level',$id_level)
+                                    ->where('posisi','sidebar')
+                                    ->orderBy('urutan','asc')
+                                    ->get();
+
+      $menu['navbar']        = bageur_akses::with(['sub_menu' => function($query){
+                                        $query->where('granted','1');
+                                }])->whereNull('sub_id')->where('granted','1')
+                                    ->where('id_level',$id_level)
+                                    ->where('posisi','navbar')
+                                    ->orderBy('urutan','asc')
+                                    ->get();
 
       $perusahaan = company::find(1);
 
         return response()->json([
+            'user'          => auth()->user(),
             'access_token'  => $token,
             'token_type'    => 'bearer',
             'level_akses'   => $listing,
