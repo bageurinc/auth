@@ -37,12 +37,12 @@ class Bageur {
 
 			return $doc->saveHTML();
 	}
-	
+
 	public function tglindo($date){
 		\Carbon\Carbon::setLocale('id');
 		return \Carbon\Carbon::parse($date)->format('d F Y');
     }
-	
+
 	public function toText($text){
          $d = new \Html2Text\Html2Text($text);
          return $d->getText();
@@ -62,7 +62,7 @@ class Bageur {
 	    $arr = ['up' => basename($up) , 'path' => $path];
 	    return $arr;
     }
-    
+
     public function base64($data,$loc,$id_user = null,$prefix = 'bageur'){
 	    $file        = explode(";base64,", $data);
 	    $extension   = explode(":", $file[0]);
@@ -76,15 +76,15 @@ class Bageur {
 	    }else{
 		\Storage::makeDirectory('public/'.$path);
 	    }
-	    
+
 	    if($extension == 'msword'){
 	    	$extension = 'doc';
 	    }
 	    if($extension == 'vnd.openxmlformats-officedocument.wordprocessingml.document'){
 	    	$extension = 'docx';
 	    }
-	    
-	    $namaBerkas = $prefix.'-'.date('ymdhis').'.'.$extension;
+
+	    $namaBerkas = $prefix.'-'.rand(000,999).date('ymdhis').'.'.$extension;
 	    $file = storage_path('app/public/'.$path.'/'.$namaBerkas);
 	    file_put_contents($file, $file_base64);
 	    $arr = ['up' => $namaBerkas , 'path' => $path];
@@ -113,7 +113,7 @@ public function base64_v2($data){
 				  $upload->where('uuid',$id);
 			   }
 			   $upload->orderBy('id','asc');
-			   
+
 			   if($type == 'group'){
 				   if($cover == true){
 					$data =  $upload->first();
@@ -122,7 +122,7 @@ public function base64_v2($data){
 					 $data = $upload->get();
 					 $new  = [];
 					 foreach ($data as $key => $value) {
-						$new[]['image'] = $value->info['base64']; 
+						$new[]['image'] = $value->info['base64'];
 					 }
 					 return $new;
 				   }
