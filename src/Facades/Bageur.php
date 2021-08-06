@@ -11,8 +11,9 @@ class Bageur {
 				return null;
 			}
 		}else{
-			$addpath = 'storage/';
-			return url($addpath.$path.'/'.$namafile);
+			// $addpath = 'storage/';
+			// return url($addpath.$path.'/'.$namafile);
+			return \Storage::url($path.'/'.$namafile);
 		}
 	}
 
@@ -85,8 +86,10 @@ class Bageur {
 	    }
 
 	    $namaBerkas = $prefix.'-'.rand(000,999).date('ymdhis').'.'.$extension;
-	    $file = storage_path('app/public/'.$path.'/'.$namaBerkas);
-	    file_put_contents($file, $file_base64);
+        $file = $path.'/'.$namaBerkas;
+	    // $file = storage_path('app/public/'.$path.'/'.$namaBerkas);
+	    // file_put_contents($file, $file_base64);
+        \Storage::put($file, $file_base64);
 	    $arr = ['up' => $namaBerkas , 'path' => $path];
 	    return $arr;
   }
