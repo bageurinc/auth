@@ -58,7 +58,7 @@ class user extends Authenticatable implements JWTSubject
 
     public function getAvatarAttribute() {
          if(!empty($this->foto)){
-            return url('storage/'.@$this->foto_path.'/'.@$this->foto);
+            return \Storage::url(@$this->foto_path.'/'.@$this->foto);
         }else{
             return \Bageur::avatar($this->name);
         }

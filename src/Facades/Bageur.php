@@ -55,11 +55,11 @@ class Bageur {
 	    if($id_user != null){
 	        $user   = \Bageur\Auth\Model\user::findOrFail($id_user);
 	        $path   = $user->username.'/'.$loc;
-	        \Storage::makeDirectory('public/'.$path);
+	        \Storage::makeDirectory($path);
 	    }else{
-	        \Storage::makeDirectory('public/'.$path);
+	        \Storage::makeDirectory($path);
 	    }
-	    $up         = $data->storeAs('public/'.$path.'/', $namaBerkas);
+	    $up         = $data->storeAs($path.'/', $namaBerkas);
 	    $arr = ['up' => basename($up) , 'path' => $path];
 	    return $arr;
     }
@@ -73,9 +73,9 @@ class Bageur {
 	    if($id_user != null){
 	        $user   = \App\User::findOrFail($id_user);
 	        $path   = $user->username.'/'.$loc;
-	        \Storage::makeDirectory('public/'.$path);
+	        \Storage::makeDirectory($path);
 	    }else{
-		\Storage::makeDirectory('public/'.$path);
+		\Storage::makeDirectory($path);
 	    }
 
 	    if($extension == 'msword'){

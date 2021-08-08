@@ -16,12 +16,12 @@
          "html2text/html2text": "^4.3",
         "intervention/image": "^2.5",
         "laravolt/avatar": "4.1.0",
-        "bageur/company": "^0.9"
+        "bageur/company": "^1.0"
     },
     "autoload": {
         "psr-4": {
-            "Bageur\\Auth\\": "src/" 
-        } 
+            "Bageur\\Auth\\": "src/"
+        }
     },
     "extra": {
         "laravel": {
@@ -34,3 +34,4 @@
         }
     }
 }
+
