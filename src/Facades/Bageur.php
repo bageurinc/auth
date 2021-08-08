@@ -99,11 +99,13 @@ public function base64_v2($data){
 	    $extension   = explode(":", $file[0]);
 	    $extension   = explode("/", $extension[1])[1];
 		$path        = $data['folder'];
-		 \Storage::makeDirectory('public/'.$path);
+		//  \Storage::makeDirectory('public/'.$path);
 	    $file_base64 = base64_decode($file[1]);
 	    $namaBerkas  = date('ymdhis').'-'.$data['name'];
-	    $file 		 = storage_path('app/public/'.$path.'/'.$namaBerkas);
-	    file_put_contents($file, $file_base64);
+        $file = $path.'/'.$namaBerkas;
+	    // $file 		 = storage_path('app/public/'.$path.'/'.$namaBerkas);
+	    // file_put_contents($file, $file_base64);
+        \Storage::put($file, $file_base64);
 	    return $namaBerkas;
   }
     public function g_gambar($id,$folder,$cover=false,$type="group"){
