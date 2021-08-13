@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Bageur\Auth\Model\user;
 use Bageur\Auth\Model\bageur_akses;
 use Bageur\Auth\Model\deviceregister;
+use Bageur\Auth\Model\logs;
 use Bageur\Company\Model\company;
 use Illuminate\Support\Facades\Auth;
 use Tymon\JWTAuth\Exceptions\JWTException;
@@ -37,6 +38,12 @@ class AuthController extends Controller
             if(! $token = Auth::attempt([$fieldType => $input['email'], 'password' => $input['password']])){
                 return response()->json(['error' => 'invalid_credentials'], 400);
             }
+
+            $cekakun = user::where('email', $input['email'])->orWhere('username', $input['email'])->first();
+            $logs = new logs;
+            $logs->nama = $cekakun->name;
+            $logs->save();
+
         } catch (JWTException $e) {
             return response()->json(['error' => 'could_not_create_token'], 500);
         }
@@ -91,7 +98,7 @@ class AuthController extends Controller
      * @return \Illuminate\Http\JsonResponse
      */
     public function refresh()
-    {   
+    {
         $user = Auth::refresh();
         return $this->respondWithToken($user);
     }
@@ -173,14 +180,14 @@ class AuthController extends Controller
         $validator = \Validator::make($request->all(), $rules,$messages,$attributes);
         if (!$validator->fails()) {
             $new            = new deviceregister;
-            $new->id_user   = @$request->user_id;  
-            $new->token     = @$request->fcmtoken;  
+            $new->id_user   = @$request->user_id;
+            $new->token     = @$request->fcmtoken;
             $new->topic     = @$request->topic;
             $new->save();
-            return ['status' => true]; 
+            return ['status' => true];
         }
     }
-    
+
     public function getuserinfo()
     {
         // $db = user::where('id', Auth::user()->id)->first();
