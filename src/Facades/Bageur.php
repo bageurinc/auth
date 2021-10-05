@@ -11,9 +11,12 @@ class Bageur {
 				return null;
 			}
 		}else{
-			// $addpath = 'storage/';
-			// return url($addpath.$path.'/'.$namafile);
-			return \Storage::url($path.'/'.$namafile);
+			if (config('bageur.auth.resize')) {
+                return 'https://cdn.bageur.xyz/cdn/mos/'.$path.'/'.$namafile;
+            } else {
+                return \Storage::url($path.'/'.$namafile);
+            }
+
 		}
 	}
 
