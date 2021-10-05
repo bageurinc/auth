@@ -15,7 +15,8 @@ class upload extends Model
     {
         $data = [
             // 'base64' => url('storage/'.$this->folder.'/'.$this->file),
-            'base64' => \Storage::url($this->folder.'/'.$this->file),
+            // 'base64' => \Storage::url($this->folder.'/'.$this->file),
+            'base64' =>  \Bageur::avatar($this->file, $this->file, $this->folder),
             'folder' => $this->folder,
             'name' => $this->file,
             'type' => $this->type,

@@ -12,7 +12,7 @@ class Bageur {
 			}
 		}else{
 			if (config('bageur.auth.resize')) {
-                return 'https://cdn.bageur.xyz/cdn/mos/'.$path.'/'.$namafile;
+                return config('bageur.auth.image_url').$path.'/'.$namafile;
             } else {
                 return \Storage::url($path.'/'.$namafile);
             }
