@@ -57,11 +57,12 @@ class user extends Authenticatable implements JWTSubject
     }
 
     public function getAvatarAttribute() {
-         if(!empty($this->foto)){
-            return \Storage::url(@$this->foto_path.'/'.@$this->foto);
-        }else{
-            return \Bageur::avatar($this->name);
-        }
+        return \Bageur::avatar(@$this->name, @$this->foto, @$this->foto_path);
+        //  if(!empty($this->foto)){
+        //     return \Storage::url(@$this->foto_path.'/'.@$this->foto);
+        // }else{
+        //     return \Bageur::avatar($this->name);
+        // }
     }
 
     public function getDigitalSignatureUrlAttribute() {
