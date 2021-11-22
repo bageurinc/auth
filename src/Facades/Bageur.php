@@ -3,7 +3,7 @@ namespace Bageur\Auth\Facades;
 
 class Bageur {
 
-	public function avatar($nama,$namafile=null,$path=null){
+	public function avatar($nama,$namafile=null,$path=null,$resize = true){
 		if($namafile == null){
 			if($nama){
 				return @\Avatar::create(strtoupper($nama))->toBase64()->encoded;
@@ -11,7 +11,7 @@ class Bageur {
 				return null;
 			}
 		}else{
-			if (config('bageur.auth.resize')) {
+			if (config('bageur.auth.resize') && $resize == true) {
                 return config('bageur.auth.image_url').$path.'/'.$namafile;
             } else {
                 return \Storage::url($path.'/'.$namafile);
@@ -29,13 +29,26 @@ class Bageur {
             {
 				$val['file'] = $searchNode->getAttribute('src');
 				$request = new \Illuminate\Http\Request($val);
+
+				$validator2 = \Validator::make($request->all(), [
+					'file' => 'required|url'
+				]);
+
+				if (!$validator2->fails()) {
+                    $getpath = parse_url($request->file);
+                    if ($getpath['host'] == 'img.midiatama.co.id') {
+                        $getdata = explode('/',$getpath['path']);
+                        $searchNode->setAttribute('src', \Bageur::avatar('xx',$getdata[3],$getdata[2],false));
+                    }
+				}
+
 				$validator = \Validator::make($request->all(), [
 					'file' => 'required|base64image'
 				]);
 
 				if (!$validator->fails()) {
 					$upload = \Bageur::base64($request->file,'_artikel_konten');
-					$searchNode->setAttribute('src', \Bageur::avatar('xx',$upload['up'],$upload['path']));
+					$searchNode->setAttribute('src', \Bageur::avatar('xx',$upload['up'],$upload['path'],false));
 				}
             }
 
