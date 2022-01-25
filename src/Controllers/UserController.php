@@ -39,6 +39,7 @@ class UserController extends Controller
             $admin->id_level	        = $request->id_level;
             $admin->username	        = $request->username;
             $admin->name                = $request->name;
+            $admin->hp                = $request->hp;
             $admin->email               = $request->email;
             $admin->jabatan               = $request->jabatan;
             $admin->tanggalmasuk               = $request->tanggalmasuk;
@@ -112,6 +113,7 @@ class UserController extends Controller
             $admin->id_level	        = $request->id_level;
             $admin->username	        = $request->username;
             $admin->name                = $request->name;
+            $admin->hp                = $request->hp;
             $admin->email               = $request->email;
             $admin->jabatan               = $request->jabatan;
             $admin->tanggalmasuk               = $request->tanggalmasuk;
