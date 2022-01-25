@@ -218,6 +218,14 @@ class AuthController extends Controller
             $admin->username            = $request->username;
             $admin->name                = $request->name;
             $admin->email               = $request->email;
+            $admin->jabatan               = $request->jabatan;
+            $admin->tanggalmasuk               = $request->tanggalmasuk;
+            $admin->nama_bank               = $request->nama_bank;
+            $admin->nama_pemilik               = $request->nama_pemilik;
+            $admin->no_rek               = $request->no_rek;
+            $admin->jumlah_pinjaman               = $request->jumlah_pinjaman;
+            $admin->sisa_pinjaman               = $request->sisa_pinjaman;
+            $admin->pinjaman_belum_dibayar               = $request->pinjaman_belum_dibayar;
             if(!empty($request->file)){
                 $upload                           = \Bageur::base64($request->file,'admin');
                 $admin->foto                      = $upload['up'];

@@ -45,6 +45,7 @@ class UserController extends Controller
             $admin->tanggalmasuk               = $request->tanggalmasuk;
             $admin->nama_bank               = $request->nama_bank;
             $admin->no_rek               = $request->no_rek;
+            $admin->nama_pemilik               = $request->nama_pemilik;
             $admin->jumlah_pinjaman               = $request->jumlah_pinjaman;
             $admin->sisa_pinjaman               = $request->sisa_pinjaman;
             $admin->pinjaman_belum_dibayar               = $request->pinjaman_belum_dibayar;
@@ -119,6 +120,7 @@ class UserController extends Controller
             $admin->tanggalmasuk               = $request->tanggalmasuk;
             $admin->nama_bank               = $request->nama_bank;
             $admin->no_rek               = $request->no_rek;
+            $admin->nama_pemilik               = $request->nama_pemilik;
             $admin->jumlah_pinjaman               = $request->jumlah_pinjaman;
             $admin->sisa_pinjaman               = $request->sisa_pinjaman;
             $admin->pinjaman_belum_dibayar               = $request->pinjaman_belum_dibayar;
