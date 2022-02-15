@@ -50,7 +50,62 @@ class AuthController extends Controller
 
         return $this->respondWithToken($token);
     }
+    
+    public function dataLogin()
+    {
+     $id_level = Auth::user()->id_level;
+     $data = bageur_akses::with(['sub_menu','action'])->whereNull('sub_id')->where('id_level',$id_level)->get();
+      $listing = [];
+      foreach ($data as $d => $rd) {
+        $listing[$rd->link] = $rd->granted == 0 ? false : true;
+        foreach ($rd->sub_menu as $a => $rs) {
+         $listing[$rs->link] = $rs->granted == 0 ? false : true;
+          foreach ($rs->action as $aa => $raa) {
+            if($raa->nama == 'delete'){
+              $listing[strtolower($rs->link.'-delete')] = $raa->granted == 0 ? false : true;
+            }else{
+              $listing[strtolower($raa->route)] = $raa->granted == 0 ? false : true;
+            }
+          }
+        }
 
+        foreach ($rd->action as $a => $ra) {
+         if($ra->nama == 'delete'){
+              $listing[strtolower($rd->link.'-delete')] = $ra->granted == 0 ? false : true;
+            }else{
+              $listing[strtolower($ra->route)] = $ra->granted == 0 ? false : true;
+            }
+        }
+
+      }
+
+      $menu['sidebar']        = bageur_akses::with(['sub_menu' => function($query){
+                                        $query->where('granted','1');
+                                }])->whereNull('sub_id')->where('granted','1')
+                                    ->where('id_level',$id_level)
+                                    ->where('posisi','sidebar')
+                                    ->orderBy('urutan','asc')
+                                    ->get();
+
+      $menu['navbar']        = bageur_akses::with(['sub_menu' => function($query){
+                                        $query->where('granted','1');
+                                }])->whereNull('sub_id')->where('granted','1')
+                                    ->where('id_level',$id_level)
+                                    ->where('posisi','navbar')
+                                    ->orderBy('urutan','asc')
+                                    ->get();
+
+      $perusahaan = company::find(1);
+
+        return response()->json([
+            'user'          => auth()->user(),
+            'token_type'    => 'bearer',
+            'level_akses'   => $listing,
+            'menu'          => $menu,
+            'perusahaan'    => $perusahaan,
+            'expires_in'    => auth()->factory()->getTTL() * 60
+        ]);
+    }
     /**
      * Get the authenticated User.
      *
