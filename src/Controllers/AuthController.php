@@ -57,9 +57,9 @@ class AuthController extends Controller
      $data = bageur_akses::with(['sub_menu','action'])->whereNull('sub_id')->where('id_level',$id_level)->get();
       $listing = [];
       foreach ($data as $d => $rd) {
-        $listing[$rd->link] = $rd->granted == 0 ? false : true;
+        $listing[strtolower($rd->link)] = $rd->granted == 0 ? false : true;
         foreach ($rd->sub_menu as $a => $rs) {
-         $listing[$rs->link] = $rs->granted == 0 ? false : true;
+         $listing[strtolower($rs->link)] = $rs->granted == 0 ? false : true;
           foreach ($rs->action as $aa => $raa) {
             if($raa->nama == 'delete'){
               $listing[strtolower($rs->link.'-delete')] = $raa->granted == 0 ? false : true;
