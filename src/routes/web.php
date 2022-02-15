@@ -7,6 +7,7 @@
         Route::post('reset', 'Bageur\Auth\Controllers\PasswordResetController@reset')->middleware('guest');
 		Route::delete('logout', 'Bageur\Auth\Controllers\AuthController@logout')->middleware('bgr.verify');
 		Route::post('refresh', 'Bageur\Auth\Controllers\AuthController@refresh')->middleware('bgr.verify');
+		Route::post('dataLogin', 'Bageur\Auth\Controllers\AuthController@dataLogin')->middleware('bgr.verify');
         Route::post('me', 'Bageur\Auth\Controllers\AuthController@me')->middleware('bgr.verify');
         Route::post('deviceregister', 'Bageur\Auth\Controllers\AuthController@device_add');
 	});
