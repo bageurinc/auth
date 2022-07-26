@@ -16,7 +16,7 @@
          "html2text/html2text": "^4.3",
         "intervention/image": "^2.5",
         "laravolt/avatar": "4.1.0",
-        "bageur/company": "^1.0"
+        "bageur/company": "dev-master"
     },
     "autoload": {
         "psr-4": {
