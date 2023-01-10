@@ -33,13 +33,13 @@ class AuthController extends Controller
     {
         try {
             $input = $request->all();
+            $cekakun = user::where('email', $input['email'])->orWhere('username', $input['email'])->first();
             $fieldType = filter_var($request->email, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
             // return $input;
-            if(! $token = Auth::attempt([$fieldType => $input['email'], 'password' => $input['password']])){
+            if(! $token = Auth::claims(['user_id' => $cekakun->id])->attempt([$fieldType => $input['email'], 'password' => $input['password']])){
                 return response()->json(['error' => 'invalid_credentials'], 400);
             }
 
-            $cekakun = user::where('email', $input['email'])->orWhere('username', $input['email'])->first();
             $logs = new logs;
             $logs->nama = $cekakun->name;
             $logs->save();
@@ -212,7 +212,7 @@ class AuthController extends Controller
       $perusahaan = company::find(1);
 
         return response()->json([
-            'user'          => auth()->user(),
+            'user'          => auth()->user()->load(['level']),
             'access_token'  => $token,
             'token_type'    => 'bearer',
             'level_akses'   => $listing,
