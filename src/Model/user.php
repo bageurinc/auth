@@ -106,6 +106,9 @@ class user extends Authenticatable implements JWTSubject
             }
         }
         $searchqry .= ")";
+        if(@$request->level){
+            $query->where('id_level',$request->level);
+        }
         if(@$request->sort_by){
             if(@$request->sort_by != null){
                 $explode = explode('.', $request->sort_by);

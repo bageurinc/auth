@@ -83,7 +83,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        return user::superadmin()->findOrFail($id);
+        return user::superadmin()->with('level')->findOrFail($id);
     }
 
     /**
