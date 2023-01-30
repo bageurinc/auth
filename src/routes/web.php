@@ -34,6 +34,8 @@
 			Route::get('global/notif/{id}', 'Bageur\Auth\Controllers\MenuController@notif_detail');
 			Route::get('getuserinfo/', 'Bageur\Auth\Controllers\AuthController@getuserinfo')->middleware('bgr.verify');
     		Route::put('edit-user/', 'Bageur\Auth\Controllers\AuthController@edituser')->middleware('bgr.verify');
+			Route::put('edit-password-user/', 'Bageur\Auth\Controllers\AuthController@passwordUpdate')->middleware('bgr.verify');
+    		Route::put('edit-foto-user/', 'Bageur\Auth\Controllers\AuthController@editfoto')->middleware('bgr.verify');
 		});
 
 	});

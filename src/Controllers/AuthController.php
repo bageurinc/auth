@@ -314,4 +314,50 @@ class AuthController extends Controller
         }
     }
 
+    public function passwordUpdate(Request $request)
+    {
+         $rules     = [
+                        'password'              => 'required|min:3|confirmed',
+                        'password_confirmation' => 'required',
+                      ];
+
+        $messages   = [];
+        $attributes = [];
+
+        $validator = Validator::make($request->all(), $rules,$messages,$attributes);
+        if ($validator->fails()) {
+            $errors = $validator->errors();
+            return response(['status' => false ,'error'    =>  $errors->all()], 200);
+        }else{
+            $admin                      = user::where('id', Auth::user()->id)->first();
+            $admin->password            = Hash::make($request->password);
+            $admin->save();
+
+            return response(['status' => $admin ,'text'    => 'has input'], 200);
+        }
+    }
+
+    public function editfoto(Request $request)
+    {
+         $rules     = [];
+
+        $messages   = [];
+        $attributes = [];
+
+        $validator = Validator::make($request->all(), $rules,$messages,$attributes);
+        if ($validator->fails()) {
+            $errors = $validator->errors();
+            return response(['status' => false ,'error'    =>  $errors->all()], 200);
+        }else{
+            $admin                      = user::where('id', Auth::user()->id)->first();
+            $admin->foto                      = $request->file_name;
+            $admin->foto_path                 = $request->file_path;
+            $admin->save();
+
+            return response(['status' => true ,'text'    => 'has input', 'data' => $admin], 200);
+        }
+    }
+
+
+
 }
