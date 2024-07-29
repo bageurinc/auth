@@ -127,7 +127,7 @@ public function base64_v2($data){
     public function g_gambar($id,$folder,$cover=false,$type="group"){
 
 			   $upload = \Bageur\Auth\Model\upload::query();
-			   $upload->where('folder',$folder);
+			   // $upload->where('folder',$folder);
 			   if($type == 'group'){
 			   	  $upload->where($type,$id);
 			   }else{
