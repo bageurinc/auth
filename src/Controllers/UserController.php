@@ -49,25 +49,25 @@ class UserController extends Controller
             $admin->jumlah_pinjaman               = $request->jumlah_pinjaman;
             $admin->sisa_pinjaman               = $request->sisa_pinjaman;
             $admin->pinjaman_belum_dibayar               = $request->pinjaman_belum_dibayar;
-            if(!empty($request->file)){
-                $upload                           = \Bageur::base64($request->file,'admin');
-                $admin->foto                      = $upload['up'];
-                $admin->foto_path                 = $upload['path'];
-            }
+            // if(!empty($request->file)){
+                // $upload                           = \Bageur::base64($request->file,'admin');
+            $admin->foto                      = $request->foto;
+            $admin->foto_path                 = $request->foto_path;
+            // }
 
-            if(!empty($request->file2)){
-                $ds                               = \Bageur::base64($request->file2,'photos');
+            // if(!empty($request->file2)){
+                // $ds                               = \Bageur::base64($request->file2,'photos');
                 // $admin->foto                      = $upload['up'];
-            }
+            // }
 
-            if(!empty($request->file3)){
-                $dsm                              = \Bageur::base64($request->file3,'photos');
+            // if(!empty($request->file3)){
+                // $dsm                              = \Bageur::base64($request->file3,'photos');
                 // $admin->foto                      = $upload['up'];
-            }
+            // }
             
             $admin->addons                      = json_encode(['userkode'                  => @$request->userkode,
-                                                               'digital_signature'         => @$ds['up'],
-                                                               'digital_signature_materai' => @$dsm['up']]);
+                                                               'digital_signature'         => @$request->digital_signature,
+                                                               'digital_signature_materai' => @$request->digital_signature_materai]);
             $admin->password                    = Hash::make($request->password);
             $admin->save();
 
@@ -124,30 +124,27 @@ class UserController extends Controller
             $admin->jumlah_pinjaman               = $request->jumlah_pinjaman;
             $admin->sisa_pinjaman               = $request->sisa_pinjaman;
             $admin->pinjaman_belum_dibayar               = $request->pinjaman_belum_dibayar;
-            if(!empty($request->file)){
-                $upload                           = \Bageur::base64($request->file,'admin');
-                $admin->foto                      = $upload['up'];
-                $admin->foto_path                 = $upload['path'];
-            }
-            $dsup = null;
-            if(!empty($request->file2)){
-                $ds                               = \Bageur::base64($request->file2,'photos');
-                $dsup                             = @$ds['up'];
-                // $admin->foto                      = $upload['up'];
-            }else{
-                $dsup                             = @$admin->addons_data->digital_signature;
-            }
-            $dsmup = null;
-            if(!empty($request->file3)){
-                $dsm                             = \Bageur::base64($request->file3,'photos');
-                $dsmup                           = @$dsm['up'];
-                // $admin->foto                      = $upload['up'];
-            }else{
-                $dsmup                           = @$admin->addons_data->digital_signature_materai;
-            }
+            $admin->foto                      = $request->foto;
+            $admin->foto_path                 = $request->foto_path;
+            // $dsup = null;
+            // if(!empty($request->file2)){
+            //     $ds                               = \Bageur::base64($request->file2,'photos');
+            //     $dsup                             = @$ds['up'];
+            //     // $admin->foto                      = $upload['up'];
+            // }else{
+            //     $dsup                             = @$admin->addons_data->digital_signature;
+            // }
+            // $dsmup = null;
+            // if(!empty($request->file3)){
+            //     $dsm                             = \Bageur::base64($request->file3,'photos');
+            //     $dsmup                           = @$dsm['up'];
+            //     // $admin->foto                      = $upload['up'];
+            // }else{
+            //     $dsmup                           = @$admin->addons_data->digital_signature_materai;
+            // }
             $admin->addons              = json_encode(['userkode'                  => @$request->userkode,
-                                                       'digital_signature'         => @$dsup,
-                                                       'digital_signature_materai' => @$dsmup]);
+                                                       'digital_signature'         => @$request->digital_signature,
+                                                       'digital_signature_materai' => @$request->digital_signature_materai]);
             if(!empty($request->password)){
                 $admin->password            = Hash::make($request->password);
             }
