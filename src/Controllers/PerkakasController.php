@@ -16,7 +16,7 @@ class perkakasController extends Controller
         $u->group       = $request->group;
         $u->folder      = $request->info['folder'];
         $u->type        = $request->info['type'];
-        $u->file        = \Bageur::base64_v2($request->info);
+        $u->file        = $request->info['name'];
         $u->save();
 
         return ['status' => true];
